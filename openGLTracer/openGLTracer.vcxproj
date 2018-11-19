@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ArcBehaviour.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Swb_Model.h" />
     <ClInclude Include="openGLTracer.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Swb_TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArcBehaviour.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Swb_Model.cpp" />
     <ClCompile Include="openGLTracer.cpp" />
