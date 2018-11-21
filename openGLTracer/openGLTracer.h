@@ -16,6 +16,7 @@
 #include <glm/glm.hpp>
 #include "Swb_Model.h"
 #include "Camera.h"
+#include "ArcBehaviour.h"
 
 
 // GLEW    
@@ -42,7 +43,7 @@ std::vector<GLfloat> tempVertexData;
 Arc_Engine::Camera mainCamera;
 double deltaTime;
 
-struct ModelAsset {
+struct ArcRenderer {
 	GLuint program;
 	GLuint texture;
 	GLuint vbo;
@@ -52,13 +53,14 @@ struct ModelAsset {
 	GLint drawCount;
 };
 
-struct ModelInstance {
-	ModelAsset* asset;
+struct ArcGameObject {
+	ArcRenderer* renderer = NULL;
 	glm::mat4 transform;
+	std::vector<ArcBehaviour*> ArcBehaviourList;
 };
 
-ModelAsset woodenCrate;
-std::list<ModelInstance> gInstances;
+ArcRenderer woodenCrate;
+std::list<ArcGameObject> gInstances;
 
 /*GLfloat vertexData[] = {
 	//  X     Y     Z       U     V
@@ -189,6 +191,8 @@ glm::mat4 translate(GLfloat x, GLfloat y, GLfloat z);
 
 glm::mat4 scale(GLfloat x, GLfloat y, GLfloat z);
 
-void RenderInstance(const ModelInstance& inst);
+glm::mat4 rotate(GLfloat x, GLfloat y, GLfloat z, GLfloat angle);
+
+void RenderInstance(const ArcGameObject& inst);
 
 #endif // !__OPENGLTRACER__
