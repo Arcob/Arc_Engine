@@ -156,6 +156,7 @@
     <ClInclude Include="openGLTracer.h" />
     <ClInclude Include="Swb_MeshLoader.h" />
     <ClInclude Include="Swb_TextureLoader.h" />
+    <ClInclude Include="TestScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArcBehaviour.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="openGLTracer.cpp" />
     <ClCompile Include="Swb_MeshLoader.cpp" />
     <ClCompile Include="Swb_TextureLoader.cpp" />
+    <ClCompile Include="TestScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="openGLTracer.rc" />

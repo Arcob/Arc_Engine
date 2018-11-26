@@ -39,6 +39,9 @@
     <ClInclude Include="ArcBehaviour.h">
       <Filter>头文件\Mine</Filter>
     </ClInclude>
+    <ClInclude Include="TestScript.h">
+      <Filter>头文件\Mine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openGLTracer.cpp">
@@ -57,6 +60,9 @@
       <Filter>源文件\Mine</Filter>
     </ClCompile>
     <ClCompile Include="ArcBehaviour.cpp">
+      <Filter>源文件\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScript.cpp">
       <Filter>源文件\Mine</Filter>
     </ClCompile>
   </ItemGroup>

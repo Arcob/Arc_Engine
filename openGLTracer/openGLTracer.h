@@ -17,6 +17,7 @@
 #include "Swb_Model.h"
 #include "Camera.h"
 #include "ArcBehaviour.h"
+#include "TestScript.h"
 
 
 // GLEW    
@@ -56,7 +57,7 @@ struct ArcRenderer {
 struct ArcGameObject {
 	ArcRenderer* renderer = NULL;
 	glm::mat4 transform;
-	std::vector<ArcBehaviour*> ArcBehaviourList;
+	std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;
 };
 
 ArcRenderer woodenCrate;
@@ -194,5 +195,7 @@ glm::mat4 scale(GLfloat x, GLfloat y, GLfloat z);
 glm::mat4 rotate(GLfloat x, GLfloat y, GLfloat z, GLfloat angle);
 
 void RenderInstance(const ArcGameObject& inst);
+
+void PrintUpdate();
 
 #endif // !__OPENGLTRACER__
