@@ -19,6 +19,7 @@
 #include "ArcBehaviour.h"
 #include "TestScript.h"
 #include "PushableBox.h"
+#include "LightBundle.h"
 
 
 // GLEW    
@@ -43,6 +44,7 @@ GLuint _textureId;
 Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
 Arc_Engine::Camera mainCamera;
+Arc_Engine::DirectionLight directionLight;
 double deltaTime;
 
 struct ArcRenderer {

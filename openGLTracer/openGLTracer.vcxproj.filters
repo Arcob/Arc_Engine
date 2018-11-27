@@ -45,6 +45,9 @@
     <ClInclude Include="PushableBox.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="LightBundle.h">
+      <Filter>头文件\Mine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openGLTracer.cpp">
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="PushableBox.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LightBundle.cpp">
+      <Filter>源文件\Mine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
