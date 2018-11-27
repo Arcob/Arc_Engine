@@ -42,6 +42,9 @@
     <ClInclude Include="TestScript.h">
       <Filter>头文件\Mine</Filter>
     </ClInclude>
+    <ClInclude Include="PushableBox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openGLTracer.cpp">
@@ -64,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="TestScript.cpp">
       <Filter>源文件\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="PushableBox.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@
 #include "Camera.h"
 #include "ArcBehaviour.h"
 #include "TestScript.h"
+#include "PushableBox.h"
 
 
 // GLEW    
