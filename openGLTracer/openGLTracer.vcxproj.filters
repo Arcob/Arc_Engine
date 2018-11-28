@@ -48,6 +48,12 @@
     <ClInclude Include="LightBundle.h">
       <Filter>头文件\Mine</Filter>
     </ClInclude>
+    <ClInclude Include="ArcGameObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcRenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openGLTracer.cpp">
@@ -76,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="LightBundle.cpp">
       <Filter>源文件\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcGameObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcRenderer.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

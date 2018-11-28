@@ -4,7 +4,7 @@
 #include <iostream>
 
 class TestScript :
-	public ArcBehaviour
+	public Arc_Engine::ArcBehaviour
 {
 public:
 	TestScript() = default;

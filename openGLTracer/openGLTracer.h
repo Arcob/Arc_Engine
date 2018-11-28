@@ -20,6 +20,8 @@
 #include "TestScript.h"
 #include "PushableBox.h"
 #include "LightBundle.h"
+#include "ArcGameObject.h"
+#include "ArcRenderer.h"
 
 
 // GLEW    
@@ -47,7 +49,7 @@ Arc_Engine::Camera mainCamera;
 Arc_Engine::DirectionLight directionLight;
 double deltaTime;
 
-struct ArcRenderer {
+/*struct ArcRenderer {
 	GLuint program;
 	GLuint texture;
 	GLuint vbo;
@@ -55,16 +57,16 @@ struct ArcRenderer {
 	GLenum drawType;
 	GLint drawStart;
 	GLint drawCount;
-};
+};*/
 
-struct ArcGameObject {
+/*struct ArcGameObject {
 	ArcRenderer* renderer = NULL;
 	glm::mat4 transform;
 	std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;
-};
+};*/
 
-ArcRenderer woodenCrate;
-std::list<ArcGameObject> gInstances;
+Arc_Engine::ArcRenderer woodenCrate;
+std::list<Arc_Engine::ArcGameObject> gInstances;
 
 /*GLfloat vertexData[] = {
 	//  X     Y     Z       U     V
@@ -197,7 +199,7 @@ glm::mat4 scale(GLfloat x, GLfloat y, GLfloat z);
 
 glm::mat4 rotate(GLfloat x, GLfloat y, GLfloat z, GLfloat angle);
 
-void RenderInstance(const ArcGameObject& inst);
+void RenderInstance(const Arc_Engine::ArcGameObject& inst);
 
 void PrintUpdate();
 

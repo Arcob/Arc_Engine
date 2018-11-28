@@ -1,16 +1,22 @@
 #pragma once
+#include "ArcGameObject.h"
 
-class ArcBehaviour
-{
-public:
-	//ArcBehaviour(ArcGameObject _gameObject);
-	virtual ~ArcBehaviour();
-	virtual void Start()=0;
-	virtual void Update()=0;
-	//const ArcGameObject gameObject() const;
+namespace Arc_Engine {
+	class ArcGameObject;
 
-private:
-	//ArcGameObject _gameObject;
+	class ArcBehaviour
+	{
+	public:
+		ArcBehaviour();
+		virtual ~ArcBehaviour();
+		virtual void Start();
+		virtual void Update();
+		const ArcGameObject* gameObject() const;
+		void setGameObject(ArcGameObject* gameObject);
 
-};
+	private:
+		ArcGameObject *_gameObject = nullptr;
+
+	};
+}
 

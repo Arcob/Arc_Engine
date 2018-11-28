@@ -3,7 +3,7 @@
 #include <iostream>
 
 class PushableBox :
-	public ArcBehaviour
+	public Arc_Engine::ArcBehaviour
 {
 public:
 	PushableBox() = default;
