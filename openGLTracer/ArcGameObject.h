@@ -4,10 +4,12 @@
 #include <memory>
 #include "ArcBehaviour.h"
 #include "ArcRenderer.h"
+#include "ArcTransform.h"
 
 
 
 namespace Arc_Engine {
+
 	class ArcBehaviour;
 
 	class ArcGameObject
@@ -17,7 +19,7 @@ namespace Arc_Engine {
 		~ArcGameObject() = default;
 
 		ArcRenderer* renderer = NULL;
-		glm::mat4 transform;
+		ArcTransform transform;
 		void attachScript(std::shared_ptr<Arc_Engine::ArcBehaviour> script);
 		const int behaviourListLength() const;
 		const std::vector<std::shared_ptr<Arc_Engine::ArcBehaviour>> getBehaviourList() const;

@@ -153,6 +153,7 @@
     <ClInclude Include="ArcBehaviour.h" />
     <ClInclude Include="ArcGameObject.h" />
     <ClInclude Include="ArcRenderer.h" />
+    <ClInclude Include="ArcTransform.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="LightBundle.h" />
     <ClInclude Include="PushableBox.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="ArcBehaviour.cpp" />
     <ClCompile Include="ArcGameObject.cpp" />
     <ClCompile Include="ArcRenderer.cpp" />
+    <ClCompile Include="ArcTransform.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="LightBundle.cpp" />
     <ClCompile Include="PushableBox.cpp" />
