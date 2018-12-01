@@ -37,4 +37,20 @@ namespace Arc_Engine {
 	void ArcGameObject::setTransfrom(ArcTransform transform) {
 		_transform = transform;
 	}
+
+	void ArcGameObject::setName(std::string name) {
+		_name = name;
+	}
+
+	const std::string ArcGameObject::name() const {
+		return _name;
+	}
+
+	void ArcGameObject::setRenderer(std::shared_ptr<ArcRenderer> renderer) {
+		_renderer = renderer;
+	}
+
+	const std::shared_ptr<ArcRenderer> ArcGameObject::renderer() const {
+		return _renderer;
+	}
 }

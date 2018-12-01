@@ -193,6 +193,8 @@ void LoadWoodenCrateAsset();
 
 void CreateInstances();
 
+void CreateSingleInstance(std::list<Arc_Engine::ArcGameObject>::iterator it, std::string name, Arc_Engine::ArcRenderer renderer, Arc_Engine::ArcTransform transform, std::vector<Arc_Engine::ArcBehaviour> ArcBehavoiurList);
+
 glm::mat4 translate(GLfloat x, GLfloat y, GLfloat z);
 
 glm::mat4 scale(GLfloat x, GLfloat y, GLfloat z);

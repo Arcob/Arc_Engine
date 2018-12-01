@@ -18,5 +18,5 @@ void TestScript::Start()
 
 void TestScript::Update()
 {
-	std::cout << "box Update" << std::endl;
+	std::cout << gameObject()->name() << std::endl;
 }
