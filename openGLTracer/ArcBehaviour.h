@@ -7,11 +7,11 @@ namespace Arc_Engine {
 	class ArcBehaviour
 	{
 	public:
-		ArcBehaviour();
-		virtual ~ArcBehaviour();
+		ArcBehaviour() = default;
+		virtual ~ArcBehaviour() = default;
 		virtual void Start();
 		virtual void Update();
-		const ArcGameObject* gameObject() const;
+		ArcGameObject* const gameObject() const;
 		void setGameObject(ArcGameObject* gameObject);
 
 	private:

@@ -2,16 +2,16 @@
 
 namespace Arc_Engine {
 
-	ArcBehaviour::ArcBehaviour()
+	/*ArcBehaviour::ArcBehaviour()
 	{
 	}
 
 
 	ArcBehaviour::~ArcBehaviour()
 	{
-	}
+	}*/
 
-	const ArcGameObject* ArcBehaviour::gameObject() const {
+	ArcGameObject* const ArcBehaviour::gameObject() const{
 		return _gameObject;
 	}
 

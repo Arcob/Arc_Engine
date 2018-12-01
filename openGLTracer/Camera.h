@@ -1,8 +1,13 @@
 #pragma once
 #include <glm/glm.hpp>
+#include "ArcBehaviour.h"
+#include "ArcGameObject.h"
+#include <fstream>
+#include <iostream>
 
 namespace Arc_Engine {
-	class Camera
+	class Camera :
+		public ArcBehaviour
 	{
 	public:
 		Camera();

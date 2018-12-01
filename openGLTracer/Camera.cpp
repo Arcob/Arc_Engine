@@ -14,6 +14,7 @@ namespace Arc_Engine {
 		_nearPlane(0.01f),
 		_farPlane(100.0f),
 		_viewportAspectRatio(4.0f / 3.0f)
+		
 	{
 	}
 
@@ -65,7 +66,7 @@ namespace Arc_Engine {
 		_verticalAngle += upAngle;
 		normalizeAngles();
 	}
-
+	
 	void Camera::lookAt(glm::vec3 position) {
 		assert(position != _position);
 		glm::vec3 direction = glm::normalize(position - _position);
@@ -107,7 +108,9 @@ namespace Arc_Engine {
 	}
 
 	glm::mat4 Camera::view() const {
-		return orientation() * glm::translate(glm::mat4(), -_position);
+		//std::cout << ArcBehaviour::gameObject()->transform().position().z << std::endl;
+		//return orientation() * glm::translate(glm::mat4(), -_position);
+		return (gameObject()->transform().rotationMatrix() * glm::translate(glm::mat4(), -gameObject()->transform().position()));
 	}
 
 	void Camera::normalizeAngles() {

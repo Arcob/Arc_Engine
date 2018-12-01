@@ -5,6 +5,8 @@
 #include "ArcBehaviour.h"
 #include "ArcRenderer.h"
 #include "ArcTransform.h"
+#include <fstream>
+#include <iostream>
 
 
 
@@ -17,15 +19,19 @@ namespace Arc_Engine {
 	public:
 		ArcGameObject() = default;
 		~ArcGameObject() = default;
-
+		
 		ArcRenderer* renderer = NULL;
-		ArcTransform transform;
+		
 		void attachScript(std::shared_ptr<Arc_Engine::ArcBehaviour> script);
 		const int behaviourListLength() const;
 		const std::vector<std::shared_ptr<Arc_Engine::ArcBehaviour>> getBehaviourList() const;
+		const ArcTransform transform() const;
+		ArcTransform* const transformPtr();
+		void setTransfrom(ArcTransform transfrom);
 
 	private:
 		std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;
+		ArcTransform _transform;
 	};
 
 }

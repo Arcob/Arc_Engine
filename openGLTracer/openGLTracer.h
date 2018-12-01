@@ -45,7 +45,7 @@ GLFWwindow* window;
 GLuint _textureId;
 Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
-Arc_Engine::Camera mainCamera;
+std::shared_ptr<Arc_Engine::Camera> mainCamera;
 Arc_Engine::DirectionLight directionLight;
 double deltaTime;
 

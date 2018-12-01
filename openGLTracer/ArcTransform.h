@@ -24,14 +24,20 @@ namespace Arc_Engine {
 		void setPosition(glm::vec3 position);
 		void setScale(glm::vec3 scale);
 		void setRotation(glm::vec3 rotation);
+		void translate(glm::vec3 offset);
+		void rotate(glm::vec3 eularAngle);
+		void rotate(float rightAngle, float upAngle, float forwardAngle);
+		void lookAt(glm::vec3 target);
 
+		glm::vec3 forward() const; //Vector3(0, 0, 1)
+		glm::vec3 right() const; //Vector3(1, 0, 0)
+		glm::vec3 up() const; //Vector3(0, 1, 0)
 	private:
 		glm::vec3 _position;
 		glm::vec3 _scale;
 		glm::vec3 _rotation;
-		const glm::mat4 translate(GLfloat x, GLfloat y, GLfloat z) const;
-		const glm::mat4 scale(GLfloat x, GLfloat y, GLfloat z) const;
-		const glm::mat4 rotate(GLfloat x, GLfloat y, GLfloat z, GLfloat angle) const;
+
+		void normalizeRotation();
 	};
 }
 
