@@ -77,8 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Workspace\openGLTracer\OpenGLStuff\glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\Workspace\openGLTracer\OpenGLStuff\headers</IncludePath>
-    <LibraryPath>D:\Workspace\openGLTracer\OpenGLStuff\libs;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <IncludePath>$(SolutionDir)\OpenGLStuff\glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\OpenGLStuff\headers</IncludePath>
+    <LibraryPath>$(SolutionDir)\OpenGLStuff\libs;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -107,7 +107,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Workspace\openGLTracer\.\external\glm;D:\Workspace\openGLTracer\.;D:\Workspace\openGLTracer\external\freeimage\distrib\windows\x64</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\.\external\glm;$(SolutionDir)\.;$(SolutionDir)\external\freeimage\distrib\windows\x64</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

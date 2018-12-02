@@ -27,7 +27,7 @@ namespace Swb_TextureLoader
 		*/
 		glGenTextures(1, &_textureId);
 
-		/**
+		/*
 		* 使用这个纹理id,或者叫绑定(关联)
 		*/
 		glBindTexture(GL_TEXTURE_2D, _textureId);
