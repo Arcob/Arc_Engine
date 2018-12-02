@@ -22,6 +22,7 @@
 #include "LightBundle.h"
 #include "ArcGameObject.h"
 #include "ArcRenderer.h"
+#include <direct.h>
 
 
 // GLEW    
@@ -31,9 +32,11 @@
 // GLFW    
 #include <GLFW/glfw3.h>    
 
-const std::string shader_path = "D:\\Workspace\\openGLTracer\\shaders";
-const std::string texture_path = "D:\\Workspace\\openGLTracer\\resources\\wooden-crate.jpg";
-const std::string model_path = "D:\\Workspace\\openGLTracer\\resources\\bunny.obj";
+std::string currentPath;//"D:\\Workspace\\openGLTracer"
+//const std::string shader_path = "D:\\Workspace\\openGLTracer\\shaders";
+const std::string shader_path = "\\shaders";
+const std::string texture_path = "\\resources\\wooden-crate.jpg";
+const std::string model_path = "\\resources\\bunny.obj";
 
 GLuint vertexShader;
 GLuint fragmentShader;
@@ -48,6 +51,7 @@ std::vector<GLfloat> tempVertexData;
 std::shared_ptr<Arc_Engine::Camera> mainCamera;
 Arc_Engine::DirectionLight directionLight;
 double deltaTime;
+
 
 /*struct ArcRenderer {
 	GLuint program;
@@ -177,7 +181,7 @@ void setupBuffer();
 
 void draw();
 
-void loadImage();
+void loadImage(std::string texture_path);
 
 void loadModel();
 
@@ -204,5 +208,7 @@ glm::mat4 rotate(GLfloat x, GLfloat y, GLfloat z, GLfloat angle);
 void RenderInstance(const Arc_Engine::ArcGameObject& inst);
 
 void PrintUpdate();
+
+std::string getCurrentPath();
 
 #endif // !__OPENGLTRACER__
