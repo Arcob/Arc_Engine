@@ -12,9 +12,9 @@
 
 
 namespace Arc_Engine {
-
+	
 	class ArcBehaviour;
-
+	class Camera;
 	class ArcGameObject
 	{
 	public:
@@ -31,6 +31,16 @@ namespace Arc_Engine {
 		const std::string name() const;
 		void setRenderer(std::shared_ptr<ArcRenderer> renderer);
 		const std::shared_ptr<ArcRenderer> renderer() const;
+
+		template<typename T>
+		T* getAComponent() {
+			for (int i = 0; i < ArcBehaviourList.size(); i++) {
+				if (dynamic_cast<T*>(ArcBehaviourList[i].get()) != nullptr) {
+					return dynamic_cast<T*>(ArcBehaviourList[i].get());
+				}
+			}
+			return nullptr;
+		}
 
 	private:
 		std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;

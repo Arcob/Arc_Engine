@@ -53,4 +53,14 @@ namespace Arc_Engine {
 	const std::shared_ptr<ArcRenderer> ArcGameObject::renderer() const {
 		return _renderer;
 	}
+
+	/*template<typename T>
+	T* ArcGameObject::getAComponent() {
+		for (int i = 0; i < ArcBehaviourList.size(); i++) {
+			if (dynamic_cast<T*>(ArcBehaviourList[i].get()) != nullptr) {
+				return ArcBehaviourList[i].get();
+			}
+		}
+		return NULL;
+	}*/
 }

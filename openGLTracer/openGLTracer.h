@@ -23,6 +23,7 @@
 #include "ArcGameObject.h"
 #include "ArcRenderer.h"
 #include <direct.h>
+#include <typeinfo>
 
 
 // GLEW    
@@ -72,63 +73,6 @@ double deltaTime;
 Arc_Engine::ArcRenderer woodenCrate;
 std::list<Arc_Engine::ArcGameObject> gInstances;
 
-/*GLfloat vertexData[] = {
-	//  X     Y     Z       U     V
-	0.0f, 0.8f, 0.0f,   0.5f, 1.0f,
-	-0.8f,-0.8f, 0.0f,   0.0f, 0.0f,
-	0.8f,-0.8f, 0.0f,   1.0f, 0.0f,
-};*/
-
-/*GLfloat vertexData[] = {
-	//  X     Y     Z       U     V
-	// bottom
-	-1.0f,-1.0f,-1.0f,   0.0f, 0.0f,
-	1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-	-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-	1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-	1.0f,-1.0f, 1.0f,   1.0f, 1.0f,
-	-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-
-	// top
-	-1.0f, 1.0f,-1.0f,   0.0f, 0.0f,
-	-1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
-	1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-	1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-	-1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
-	1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-
-	// front
-	-1.0f,-1.0f, 1.0f,   1.0f, 0.0f,
-	1.0f,-1.0f, 1.0f,   0.0f, 0.0f,
-	-1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-	1.0f,-1.0f, 1.0f,   0.0f, 0.0f,
-	1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
-	-1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-
-	// back
-	-1.0f,-1.0f,-1.0f,   0.0f, 0.0f,
-	-1.0f, 1.0f,-1.0f,   0.0f, 1.0f,
-	1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-	1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-	-1.0f, 1.0f,-1.0f,   0.0f, 1.0f,
-	1.0f, 1.0f,-1.0f,   1.0f, 1.0f,
-
-	// left
-	-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-	-1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-	-1.0f,-1.0f,-1.0f,   0.0f, 0.0f,
-	-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-	-1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-	-1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-
-	// right
-	1.0f,-1.0f, 1.0f,   1.0f, 1.0f,
-	1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-	1.0f, 1.0f,-1.0f,   0.0f, 0.0f,
-	1.0f,-1.0f, 1.0f,   1.0f, 1.0f,
-	1.0f, 1.0f,-1.0f,   0.0f, 0.0f,
-	1.0f, 1.0f, 1.0f,   0.0f, 1.0f
-};*/
 
 GLfloat vertexData[] = {
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f,1.0f,	// A
@@ -210,5 +154,8 @@ void RenderInstance(const Arc_Engine::ArcGameObject& inst);
 void PrintUpdate();
 
 std::string getCurrentPath();
+
+template<typename T>
+std::vector<Arc_Engine::ArcGameObject*> findGameObjectsOfType();
 
 #endif // !__OPENGLTRACER__
