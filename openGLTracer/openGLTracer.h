@@ -155,7 +155,22 @@ void PrintUpdate();
 
 std::string getCurrentPath();
 
+//用到模板的函数声明和定义要放在一起否则会出现链接错误
 template<typename T>
-std::vector<Arc_Engine::ArcGameObject*> findGameObjectsOfType();
+std::vector<Arc_Engine::ArcGameObject*> findGameObjectsOfType() {
+	std::vector<Arc_Engine::ArcGameObject*> result = std::vector<Arc_Engine::ArcGameObject*>();
+	std::list<Arc_Engine::ArcGameObject>::iterator it;//start
+	for (it = gInstances.begin(); it != gInstances.end(); ++it) {
+		for (int i = 0; i < (it->behaviourListLength()); i++) {
+			//(it->getBehaviourList())[i]->Start();
+			//if (dynamic_cast<T*>(&*((it->getBehaviourList())[i])) != nullptr) {
+			if (dynamic_cast<T*>(((it->getBehaviourList())[i]).get()) != nullptr) {
+				Arc_Engine::ArcGameObject* temp = &*it;
+				result.push_back(temp);
+			}
+		}
+	}
+	return result;
+}
 
 #endif // !__OPENGLTRACER__

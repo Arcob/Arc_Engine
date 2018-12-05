@@ -35,8 +35,9 @@ namespace Arc_Engine {
 		template<typename T>
 		T* getAComponent() {
 			for (int i = 0; i < ArcBehaviourList.size(); i++) {
-				if (dynamic_cast<T*>(ArcBehaviourList[i].get()) != nullptr) {
-					return dynamic_cast<T*>(ArcBehaviourList[i].get());
+				auto temp = dynamic_cast<T*>(ArcBehaviourList[i].get());
+				if (temp != nullptr) {
+					return temp;
 				}
 			}
 			return nullptr;
