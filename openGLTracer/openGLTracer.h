@@ -36,9 +36,10 @@
 std::string currentPath;//"D:\\Workspace\\openGLTracer"
 //const std::string shader_path = "D:\\Workspace\\openGLTracer\\shaders";
 const std::string shader_path = "\\shaders";
-const std::string pushable_box_path = "\\resources\\wooden-crate2.jpg";
-const std::string wall_path = "\\resources\\gray.jpg";
+const std::string pushable_box_path = "\\resources\\wooden-crate.jpg";
+const std::string wall_path = "\\resources\\edge.jpg";
 const std::string aim_path = "\\resources\\aim.jpg";
+const std::string player_path = "\\resources\\panda.jpg";
 const std::string model_path = "\\resources\\bunny.obj";
 
 GLuint vertexShader;
@@ -51,6 +52,7 @@ GLFWwindow* window;
 GLuint pushableBoxTexture;
 GLuint wallTexture;
 GLuint aimTexture;
+GLuint playerTexture;
 Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
 std::shared_ptr<Arc_Engine::Camera> mainCamera;
@@ -77,6 +79,7 @@ double deltaTime;
 Arc_Engine::ArcRenderer woodenCrate;
 Arc_Engine::ArcRenderer wall;
 Arc_Engine::ArcRenderer aim;
+Arc_Engine::ArcRenderer player;
 std::list<Arc_Engine::ArcGameObject> gInstances;
 
 
