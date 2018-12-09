@@ -7,7 +7,7 @@ namespace Arc_Engine {
 	static const float MaxVerticalAngle = 85.0f;
 
 	Camera::Camera():
-		_fieldOfView(50.0f),
+		_fieldOfView(60.0f),
 		_nearPlane(0.01f),
 		_farPlane(100.0f),
 		_viewportAspectRatio(4.0f / 3.0f)
