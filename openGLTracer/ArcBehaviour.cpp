@@ -15,6 +15,11 @@ namespace Arc_Engine {
 		return _gameObject;
 	}
 
+	void ArcBehaviour::Awake()
+	{
+
+	}
+
 	void ArcBehaviour::Start()
 	{
 

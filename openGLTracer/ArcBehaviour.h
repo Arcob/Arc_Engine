@@ -9,6 +9,7 @@ namespace Arc_Engine {
 	public:
 		ArcBehaviour() = default;
 		virtual ~ArcBehaviour() = default;
+		virtual void Awake();
 		virtual void Start();
 		virtual void Update();
 		ArcGameObject* const gameObject() const;
