@@ -26,7 +26,7 @@ void GameController::Start()
 
 void GameController::Update()
 {
-	
+
 }
 
 bool GameController::isWall(int x, int y) {

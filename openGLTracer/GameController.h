@@ -1,6 +1,7 @@
 #pragma once
 #include "ArcBehaviour.h"
 #include <glm/glm.hpp>
+#include "ArcInput.h"
 
 class GameController :
 	public Arc_Engine::ArcBehaviour

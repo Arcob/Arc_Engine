@@ -22,6 +22,7 @@
 #include "LightBundle.h"
 #include "ArcGameObject.h"
 #include "ArcRenderer.h"
+#include "ArcInput.h"
 #include <direct.h>
 #include <typeinfo>
 
