@@ -13,6 +13,8 @@ public:
 	void Start();
 	void Update();
 
+	const float moveSpeed() const;
+
 	bool isWall(int x, int y);
 	bool isTarget(int x, int y);
 	bool isEmpty(int x, int y);
@@ -24,12 +26,13 @@ public:
 	void resetToOrigin();
 	bool judgeWin();
 	
+	static GameController* instance;
 
 private:
 	//private MovableCube[] MovableCubeArray;
 	//private Player player;
-	float moveSpeed = 2.0;
-	static GameController* instance;
+	float _moveSpeed = 2.0;
+	
 	bool win = false;
 	int map[7][6] = { //0是空格，1是墙，2是目标点
 	{1,1,1,1,1,1},

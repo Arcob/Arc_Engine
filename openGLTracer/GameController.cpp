@@ -29,6 +29,10 @@ void GameController::Update()
 
 }
 
+const float GameController::moveSpeed() const{
+	return _moveSpeed;
+}
+
 bool GameController::isWall(int x, int y) {
 	return map[y][x] == 1 ? true : false;
 }

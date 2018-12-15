@@ -1,6 +1,9 @@
 #pragma once
 #include "ArcBehaviour.h"
 #include <glm/glm.hpp>
+#include "GameController.h"
+#include "ArcInput.h"
+#include "ArcTime.h"
 
 class MovableObject :
 	public Arc_Engine::ArcBehaviour
@@ -14,7 +17,7 @@ public:
 	void moveTo(glm::vec2 target);
 	void setTargetCoord(glm::vec2 target);
 	void setPosition(glm::vec2 target);
-	glm::vec3 getPosition(glm::vec2 vec2);
+	const glm::vec3 getPosition(glm::vec2 vec2);
 	void resetToOrigin();
 	const glm::vec2 originCoord() const;
 	const glm::vec2 coord() const;
