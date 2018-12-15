@@ -23,6 +23,8 @@
 #include "ArcGameObject.h"
 #include "ArcRenderer.h"
 #include "ArcInput.h"
+#include "ArcTime.h"
+#include "ArcLogger.h"
 #include <direct.h>
 #include <typeinfo>
 

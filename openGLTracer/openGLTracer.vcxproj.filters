@@ -66,6 +66,12 @@
     <ClInclude Include="ArcInput.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ArcTime.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcLogger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openGLTracer.cpp">
@@ -111,6 +117,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ArcInput.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcTime.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcLogger.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
