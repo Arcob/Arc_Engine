@@ -161,6 +161,7 @@
     <ClInclude Include="GameController.h" />
     <ClInclude Include="LightBundle.h" />
     <ClInclude Include="MovableObject.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PushableBox.h" />
     <ClInclude Include="Swb_Model.h" />
     <ClInclude Include="openGLTracer.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="LightBundle.cpp" />
     <ClCompile Include="MovableObject.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PushableBox.cpp" />
     <ClCompile Include="Swb_Model.cpp" />
     <ClCompile Include="openGLTracer.cpp" />
