@@ -1,9 +1,10 @@
 #pragma once
 #include "ArcBehaviour.h"
 #include <glm/glm.hpp>
-#include "GameController.h"
+//#include "GameController.h"
 #include "ArcInput.h"
 #include "ArcTime.h"
+
 
 class MovableObject :
 	public Arc_Engine::ArcBehaviour

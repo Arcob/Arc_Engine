@@ -2,6 +2,11 @@
 #include "ArcBehaviour.h"
 #include <glm/glm.hpp>
 #include "ArcInput.h"
+#include "Player.h"
+#include "MovableObject.h"
+#include "MovableCube.h"
+
+class Player;
 
 class GameController :
 	public Arc_Engine::ArcBehaviour
@@ -22,7 +27,7 @@ public:
 	bool isTarget(glm::vec2 coord);
 	bool isEmpty(glm::vec2 coord);
 	bool isMovableCube(glm::vec2 coord);
-	//MovableCube findMovableCube(Vector2 coord);
+	MovableCube* findMovableCube(glm::vec2 coord);
 	void resetToOrigin();
 	bool judgeWin();
 	
@@ -34,6 +39,8 @@ private:
 	float _moveSpeed = 2.0;
 	
 	bool win = false;
+	std::vector<MovableCube*> _movableCubeArray;
+	Player* _player;
 	int map[7][6] = { //0是空格，1是墙，2是目标点
 	{1,1,1,1,1,1},
 	{1,0,0,0,0,1},
@@ -43,5 +50,6 @@ private:
 	{1,0,0,1,1,1},
 	{1,1,1,1,1,1},
 	};
+	
 };
 

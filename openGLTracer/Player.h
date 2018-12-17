@@ -1,10 +1,13 @@
 #pragma once
+
 #include "MovableObject.h"
 #include "ArcInput.h"
 #include "ArcTime.h"
 #include "ArcLogger.h"
 #include <glm/glm.hpp>
 #include "GameController.h"
+
+class GameController;
 
 class Player :
 	public MovableObject

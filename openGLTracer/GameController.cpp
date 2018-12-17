@@ -57,7 +57,44 @@ bool GameController::isEmpty(glm::vec2 coord) {
 	return isEmpty((int)coord.x, (int)coord.y);
 }
 
-//bool GameController::isMovableCube(glm::vec2 coord);
-//MovableCube findMovableCube(Vector2 coord);
-//void GameController::resetToOrigin();
-//bool GameController::judgeWin();
+bool GameController::isMovableCube(glm::vec2 coord) {
+	for (int i = 0; i < _movableCubeArray.size(); i++)
+	{
+		if (_movableCubeArray[i]->coord() == coord)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+MovableCube* GameController::findMovableCube(glm::vec2 coord) {
+	for (int i = 0; i < _movableCubeArray.size(); i++)
+	{
+		if (_movableCubeArray[i]->coord() == coord)
+		{
+			return _movableCubeArray[i];
+		}
+	}
+	return nullptr;
+}
+
+void GameController::resetToOrigin() {
+	win = false;
+	_player->resetToOrigin();
+	for (int i = 0; i < _movableCubeArray.size(); i++)
+	{
+		_movableCubeArray[i]->resetToOrigin();
+	}
+}
+
+bool GameController::judgeWin() {
+	for (int i = 0; i < _movableCubeArray.size(); i++)
+	{
+		if (!isTarget(_movableCubeArray[i]->coord()))
+		{
+			return false;
+		}
+	}
+	return true;
+}

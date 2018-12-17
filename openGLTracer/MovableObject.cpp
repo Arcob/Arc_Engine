@@ -29,7 +29,8 @@ void MovableObject::Update() {
 }
 
 void MovableObject::moveTo(glm::vec2 target) {
-	gameObject()->transformPtr()->setPosition(glm::mix(gameObject()->transform().position(), getPosition(target), GameController::instance->moveSpeed() * Arc_Engine::ArcTime::deltaTime() / glm::distance(gameObject()->transform().position(), getPosition(target))));
+	//GameController::instance->moveSpeed()
+	gameObject()->transformPtr()->setPosition(glm::mix(gameObject()->transform().position(), getPosition(target), 2.0f * Arc_Engine::ArcTime::deltaTime() / glm::distance(gameObject()->transform().position(), getPosition(target))));
 }
 
 void MovableObject::setTargetCoord(glm::vec2 target) {
