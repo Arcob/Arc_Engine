@@ -48,7 +48,7 @@ void Player::Update() {
 }
 
 void Player::judgeMove(glm::vec2 deltaPosition) {
-	glm::vec2 target = coord() + deltaPosition;
+	/*glm::vec2 target = coord() + deltaPosition;
 	if (GameController::instance->isWall(target)) {
 		if (GameController::instance->isMovableCube(target))
 		{
@@ -63,5 +63,5 @@ void Player::judgeMove(glm::vec2 deltaPosition) {
 		}
 		setTargetCoord(target);
 		_canMove = false;
-	}
+	}*/
 }
