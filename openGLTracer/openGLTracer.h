@@ -25,6 +25,8 @@
 #include "ArcInput.h"
 #include "ArcTime.h"
 #include "ArcLogger.h"
+#include "GameController.h"
+#include "Player.h"
 #include <direct.h>
 #include <typeinfo>
 
