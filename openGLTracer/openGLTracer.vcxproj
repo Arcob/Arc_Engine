@@ -23,7 +23,7 @@
     <ProjectGuid>{BCDB9C4F-E381-4D6D-87A1-EE2B0B131ED8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>openGLTracer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -160,6 +160,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="LightBundle.h" />
+    <ClInclude Include="MovableCube.h" />
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PushableBox.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="LightBundle.cpp" />
+    <ClCompile Include="MovableCube.cpp" />
     <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PushableBox.cpp" />

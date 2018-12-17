@@ -22,6 +22,7 @@ public:
 	const glm::vec2 originCoord() const;
 	const glm::vec2 coord() const;
 	const glm::vec2 targetCoord() const;
+	void setCoord(glm::vec2 coord);
 	const bool moving() const;
 
 

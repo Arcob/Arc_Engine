@@ -27,11 +27,11 @@ void Player::Update() {
 		{
 			judgeMove(glm::vec2(0.0f, -1.0f));
 		}
-		else if (Arc_Engine::ArcInput::getKey('A'))
+		else if (Arc_Engine::ArcInput::getKey('D'))
 		{
 			judgeMove(glm::vec2(-1.0f, 0.0f));
 		}
-		else if (Arc_Engine::ArcInput::getKey('D'))
+		else if (Arc_Engine::ArcInput::getKey('A'))
 		{
 			judgeMove(glm::vec2(1.0f, 0.0f));
 		}
@@ -49,7 +49,7 @@ void Player::Update() {
 
 void Player::judgeMove(glm::vec2 deltaPosition) {
 	/*glm::vec2 target = coord() + deltaPosition;
-	if (GameController::instance->isWall(target)) {
+	if (!GameController::instance->isWall(target)) {
 		if (GameController::instance->isMovableCube(target))
 		{
 			glm::vec2 doubleTarget = target + deltaPosition;
@@ -64,4 +64,9 @@ void Player::judgeMove(glm::vec2 deltaPosition) {
 		setTargetCoord(target);
 		_canMove = false;
 	}*/
+	glm::vec2 target = coord() + deltaPosition;
+	if (!GameController::instance->isWall(target)) {
+		setTargetCoord(target);
+		_canMove = false;
+	}
 }

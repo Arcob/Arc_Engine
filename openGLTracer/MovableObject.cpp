@@ -64,6 +64,10 @@ const glm::vec2 MovableObject::targetCoord() const {
 	return _targetCoord;
 }
 
+void MovableObject::setCoord(glm::vec2 coord) {
+	_coord = coord;
+}
+
 const bool MovableObject::moving() const {
 	return _moving;
 }
