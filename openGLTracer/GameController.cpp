@@ -21,12 +21,19 @@ void GameController::Awake()
 
 void GameController::Start()
 {
-	
+	_movableCubeArray = std::vector<MovableCube*>();
+	auto _movableCubeGameObjectArray = Arc_Engine::ArcGameObject::findGameObjectsOfType<MovableCube>();
+	for (int i = 0; i < _movableCubeGameObjectArray.size(); i++) {
+		_movableCubeArray.push_back(_movableCubeGameObjectArray[i]->getComponent<MovableCube>());
+	}
+	_player = Arc_Engine::ArcGameObject::findGameObjectsOfType<Player>()[0]->getComponent<Player>();
 }
 
 void GameController::Update()
 {
-
+	if (Arc_Engine::ArcInput::getKeyDown(32)) { //GLFW_KEY_SPACE   32
+		resetToOrigin();
+	}
 }
 
 const float GameController::moveSpeed() const{

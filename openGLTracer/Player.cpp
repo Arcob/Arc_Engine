@@ -56,7 +56,7 @@ void Player::judgeMove(glm::vec2 deltaPosition) {
 			if (!GameController::instance->isWall(doubleTarget) && !GameController::instance->isMovableCube(doubleTarget))
 			{
 				setTargetCoord(target);
-				//GameController::instance->findMovableCube(target).setTargetCoord(doubleTarget);
+				GameController::instance->findMovableCube(target)->setTargetCoord(doubleTarget);
 				_canMove = false;
 			}
 			return;

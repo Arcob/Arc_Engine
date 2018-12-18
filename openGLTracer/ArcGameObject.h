@@ -35,7 +35,7 @@ namespace Arc_Engine {
 		const std::shared_ptr<ArcRenderer> renderer() const;
 
 		template<typename T>
-		T* getAComponent() {
+		T* getComponent() {
 			for (int i = 0; i < ArcBehaviourList.size(); i++) {
 				auto temp = dynamic_cast<T*>(ArcBehaviourList[i].get());
 				if (temp != nullptr) {
