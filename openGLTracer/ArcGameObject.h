@@ -6,7 +6,9 @@
 #include "ArcBehaviour.h"
 #include "ArcRenderer.h"
 #include "ArcTransform.h"
+#include "ArcGameObject.h"
 #include <fstream>
+#include <list>
 #include <iostream>
 
 
@@ -43,7 +45,29 @@ namespace Arc_Engine {
 			return nullptr;
 		}
 
+		static void setGameObjectList(std::list<Arc_Engine::ArcGameObject>* list);
+
+		//用到模板的函数声明和定义要放在一起否则会出现链接错误
+		template<typename T>
+		static std::vector<Arc_Engine::ArcGameObject*> findGameObjectsOfType() {
+			std::vector<Arc_Engine::ArcGameObject*> result = std::vector<Arc_Engine::ArcGameObject*>();
+			std::list<Arc_Engine::ArcGameObject>::iterator it;//start
+			//std::cout << _gameObjectList->size() << std::endl;
+			for (it = _gameObjectList->begin(); it != _gameObjectList->end(); ++it) {
+				for (int i = 0; i < (it->behaviourListLength()); i++) {
+					//(it->getBehaviourList())[i]->Start();
+					//if (dynamic_cast<T*>(&*((it->getBehaviourList())[i])) != nullptr) {
+					if (dynamic_cast<T*>(((it->getBehaviourList())[i]).get()) != nullptr) {
+						Arc_Engine::ArcGameObject* temp = &*it;
+						result.push_back(temp);
+					}
+				}
+			}
+			return result;
+		}
+
 	private:
+		static std::list<Arc_Engine::ArcGameObject>* _gameObjectList;
 		std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;
 		ArcTransform _transform;
 		std::shared_ptr<ArcRenderer> _renderer = nullptr;

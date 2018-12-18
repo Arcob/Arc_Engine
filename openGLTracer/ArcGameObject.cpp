@@ -11,6 +11,8 @@ namespace Arc_Engine {
 	{
 	}*/
 
+	std::list<Arc_Engine::ArcGameObject>* ArcGameObject::_gameObjectList = nullptr;
+
 	void Arc_Engine::ArcGameObject::attachScript(std::shared_ptr<Arc_Engine::ArcBehaviour> script) {
 		ArcBehaviourList.push_back(script);
 		//std::cout << " a: " << this->behaviourListLength() << std::endl;
@@ -52,6 +54,10 @@ namespace Arc_Engine {
 
 	const std::shared_ptr<ArcRenderer> ArcGameObject::renderer() const {
 		return _renderer;
+	}
+
+	void ArcGameObject::setGameObjectList(std::list<Arc_Engine::ArcGameObject>* list) {
+		_gameObjectList = list;
 	}
 
 	/*template<typename T>
