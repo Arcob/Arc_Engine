@@ -13,18 +13,9 @@ If anyone see this little engine and like it, I beg you to give me a star. As I 
 
 I use this little engine to implement a sokoban game (box mover), the gif is shown below.
 
+![image](https://github.com/Arcob/openGLTracer/blob/master/resources/boxMover.jpg)
 
-
-
-
-
-
-
-
-
-
-
-This little is still not fully completed, I will gradually improve it
+This little is still not fully completed, I will gradually improve it.
 
 --------------------------for compile------------------------------
 

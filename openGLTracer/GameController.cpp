@@ -34,6 +34,11 @@ void GameController::Update()
 	if (Arc_Engine::ArcInput::getKeyDown(32)) { //GLFW_KEY_SPACE   32
 		resetToOrigin();
 	}
+	if (!win && judgeWin())
+	{
+		win = true;
+		Arc_Engine::ArcLogger::log("you win");
+	}
 }
 
 const float GameController::moveSpeed() const{

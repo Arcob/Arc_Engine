@@ -2,6 +2,7 @@
 #include "ArcBehaviour.h"
 #include <glm/glm.hpp>
 #include "ArcInput.h"
+#include "ArcLogger.h"
 #include "Player.h"
 #include "MovableObject.h"
 #include "MovableCube.h"

@@ -8,7 +8,7 @@ namespace Arc_Engine {
 
 	Camera::Camera():
 		_fieldOfView(60.0f),
-		_nearPlane(0.01f),
+		_nearPlane(0.3f),
 		_farPlane(100.0f),
 		_viewportAspectRatio(4.0f / 3.0f)
 	{

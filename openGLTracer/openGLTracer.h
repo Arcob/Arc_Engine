@@ -41,10 +41,10 @@
 std::string currentPath;//"D:\\Workspace\\openGLTracer"
 //const std::string shader_path = "D:\\Workspace\\openGLTracer\\shaders";
 const std::string shader_path = "\\shaders";
-const std::string pushable_box_path = "\\resources\\wooden-crate.jpg";
+const std::string pushable_box_path = "\\resources\\wooden-crate3.jpg";
 const std::string wall_path = "\\resources\\edge.jpg";
 const std::string aim_path = "\\resources\\aim.jpg";
-const std::string player_path = "\\resources\\panda.jpg";
+const std::string player_path = "\\resources\\PandaPlayer.jpg";
 const std::string model_path = "\\resources\\bunny.obj";
 
 GLuint vertexShader;
