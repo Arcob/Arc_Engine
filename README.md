@@ -24,7 +24,7 @@ I use this little engine to implement a sokoban game (box mover), the gif is sho
 
 
 
-This little is still not fully completed, I will 
+This little is still not fully completed, I will gradually improve it
 
 --------------------------for compile------------------------------
 
