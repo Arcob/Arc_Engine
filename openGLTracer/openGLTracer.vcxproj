@@ -155,6 +155,7 @@
     <ClInclude Include="ArcInput.h" />
     <ClInclude Include="ArcLogger.h" />
     <ClInclude Include="ArcRenderer.h" />
+    <ClInclude Include="ArcScene.h" />
     <ClInclude Include="ArcTime.h" />
     <ClInclude Include="ArcTransform.h" />
     <ClInclude Include="Camera.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="ArcInput.cpp" />
     <ClCompile Include="ArcLogger.cpp" />
     <ClCompile Include="ArcRenderer.cpp" />
+    <ClCompile Include="ArcScene.cpp" />
     <ClCompile Include="ArcTime.cpp" />
     <ClCompile Include="ArcTransform.cpp" />
     <ClCompile Include="Camera.cpp" />

@@ -78,6 +78,9 @@
     <ClInclude Include="MovableCube.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ArcScene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openGLTracer.cpp">
@@ -135,6 +138,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MovableCube.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcScene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
