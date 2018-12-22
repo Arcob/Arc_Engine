@@ -29,7 +29,9 @@
 #include "GameController.h"
 #include <direct.h>
 #include <typeinfo>
+#include "ArcScene.h"
 
+#define print Arc_Engine::ArcLogger::log
 
 // GLEW    
 #define GLEW_STATIC    
@@ -61,7 +63,7 @@ GLuint playerTexture;
 Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
 std::shared_ptr<Arc_Engine::Camera> mainCamera;
-Arc_Engine::DirectionLight directionLight;
+std::unique_ptr<Arc_Engine::ArcScene> mainScene;
 double deltaTime;
 
 
