@@ -17,7 +17,7 @@ GameController* GameController::instance = nullptr;
 void GameController::Awake()
 {
 	instance = this;
-	Arc_Engine::ArcLogger::log("GameController Awake");
+	//Arc_Engine::ArcLogger::log("GameController Awake");
 }
 
 void GameController::Start()

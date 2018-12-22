@@ -135,6 +135,8 @@ GLfloat vertexData[] = {
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  0.0f, -1.0f, 0.0f, // A
 };
 
+void setMainScene();
+
 void loadShader(std::string vertexShaderPath, std::string fragmentShaderPath);
 
 void setupBuffer();

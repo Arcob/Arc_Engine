@@ -11,8 +11,6 @@
 #include <list>
 #include <iostream>
 
-
-
 namespace Arc_Engine {
 	
 	class ArcBehaviour;
