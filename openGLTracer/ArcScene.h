@@ -1,15 +1,13 @@
 #pragma once
-#include <vector>
+#include "commom.h"
 #include "ArcGameObject.h"
 #include "LightBundle.h"
 
 namespace Arc_Engine {
 
-	class ArcScene
+	class ArcScene: public std::enable_shared_from_this<ArcScene>
 	{
 	public:
-		ArcScene() = default;
-		~ArcScene() = default;
 		std::vector<std::shared_ptr<ArcGameObject>> getGameObjectsInScene();
 		const std::shared_ptr<Arc_Engine::DirectionLight> light() const;
 		void setLight(std::shared_ptr<Arc_Engine::DirectionLight> light); //之后把light改成基类？

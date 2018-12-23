@@ -2,18 +2,28 @@
 #ifndef __OPENGLTRACER__
 #define __OPENGLTRACER__
 
-
-
+#include "commom.h"
+/*
 #include <fstream>
 #include <iostream>
 #include <streambuf>
 #include <vector>
 #include <list>
-#include "FreeImage.h"
+#include <direct.h>
+#include <typeinfo>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-//#include <glm/common.hpp>
 #include <glm/glm.hpp>
+
+// GLEW    
+#define GLEW_STATIC    
+#include <GL/glew.h>    
+
+// GLFW    
+#include <GLFW/glfw3.h>   
+*/
+
+#include "FreeImage.h"
 #include "Swb_Model.h"
 #include "Camera.h"
 #include "ArcBehaviour.h"
@@ -27,18 +37,9 @@
 #include "ArcLogger.h"
 #include "Player.h"
 #include "GameController.h"
-#include <direct.h>
-#include <typeinfo>
 #include "ArcScene.h"
 
-#define print Arc_Engine::ArcLogger::log
-
-// GLEW    
-#define GLEW_STATIC    
-#include <GL/glew.h>    
-
-// GLFW    
-#include <GLFW/glfw3.h>    
+#define print Arc_Engine::ArcLogger::log 
 
 std::string currentPath;//"D:\\Workspace\\openGLTracer"
 //const std::string shader_path = "D:\\Workspace\\openGLTracer\\shaders";
@@ -172,6 +173,8 @@ void RenderInstance(const Arc_Engine::ArcGameObject& inst);
 void PrintUpdate();
 
 std::string getCurrentPath();
+
+void registerScene1(std::shared_ptr<Arc_Engine::ArcScene> scene);
 
 //用到模板的函数声明和定义要放在一起否则会出现链接错误
 template<typename T>

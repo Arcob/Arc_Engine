@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ArcApplication.h" />
     <ClInclude Include="ArcBehaviour.h" />
     <ClInclude Include="ArcGameObject.h" />
     <ClInclude Include="ArcInput.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="ArcTime.h" />
     <ClInclude Include="ArcTransform.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="commom.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="LightBundle.h" />
     <ClInclude Include="MovableCube.h" />
@@ -172,6 +174,7 @@
     <ClInclude Include="TestScript.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArcApplication.cpp" />
     <ClCompile Include="ArcBehaviour.cpp" />
     <ClCompile Include="ArcGameObject.cpp" />
     <ClCompile Include="ArcInput.cpp" />

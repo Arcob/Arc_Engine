@@ -1,7 +1,6 @@
 #pragma once
+#include "commom.h"
 #include "ArcBehaviour.h"
-#include <glm/glm.hpp>
-//#include "GameController.h"
 #include "ArcInput.h"
 #include "ArcTime.h"
 

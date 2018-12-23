@@ -81,6 +81,12 @@
     <ClInclude Include="ArcScene.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ArcApplication.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="commom.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openGLTracer.cpp">
@@ -141,6 +147,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ArcScene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcApplication.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

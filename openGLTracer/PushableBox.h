@@ -1,6 +1,7 @@
 #pragma once
+
+#include "commom.h"
 #include "ArcBehaviour.h"
-#include <iostream>
 
 class PushableBox :
 	public Arc_Engine::ArcBehaviour

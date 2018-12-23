@@ -3,14 +3,8 @@
 #ifndef __SWB_MESH_LOADER__
 #define __SWB_MESH_LOADER__
 
-#include <GL/glew.h>
-#include <vector>
-#include <fstream>
-#include <iostream>
-#include <streambuf>
-#include <string>
+#include "commom.h"
 #include "Swb_Model.h"
-#include <sstream>
 
 class Swb_Model;
 
