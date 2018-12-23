@@ -2,23 +2,7 @@
 #ifndef __SWB_TEXTURE_LOADER__
 #define __SWB_TEXTURE_LOADER__
 
-#include <fstream>
-#include <iostream>
-#include <streambuf>
-#include <vector>
-// GLEW    
-#define GLEW_STATIC    
-#include <GL/glew.h>    
-
-// GLFW    
-#include <GLFW/glfw3.h>   
-
-/*class Swb_TextureLoader
-{
-public:
-	Swb_TextureLoader();
-	~Swb_TextureLoader();
-};*/
+#include "commom.h"
 
 namespace Swb_TextureLoader 
 {

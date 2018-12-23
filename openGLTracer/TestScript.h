@@ -1,7 +1,7 @@
 #pragma once
 
+#include "commom.h"
 #include "ArcBehaviour.h"
-#include <iostream>
 
 class TestScript :
 	public Arc_Engine::ArcBehaviour

@@ -3,25 +3,6 @@
 #define __OPENGLTRACER__
 
 #include "commom.h"
-/*
-#include <fstream>
-#include <iostream>
-#include <streambuf>
-#include <vector>
-#include <list>
-#include <direct.h>
-#include <typeinfo>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/glm.hpp>
-
-// GLEW    
-#define GLEW_STATIC    
-#include <GL/glew.h>    
-
-// GLFW    
-#include <GLFW/glfw3.h>   
-*/
 
 #include "FreeImage.h"
 #include "Swb_Model.h"

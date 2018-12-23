@@ -1,5 +1,6 @@
 #include "MovableObject.h"
-
+#include "ArcInput.h"
+#include "ArcTime.h"
 
 
 /*MovableObject::MovableObject()

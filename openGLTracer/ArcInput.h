@@ -1,10 +1,5 @@
 #pragma once
-
-#include <GLFW/glfw3.h>
-#include <vector>
-
-#include <fstream>
-#include <iostream>
+#include "commom.h"
 
 namespace Arc_Engine {
 

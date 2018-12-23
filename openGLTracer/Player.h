@@ -2,12 +2,6 @@
 
 #include "commom.h"
 #include "MovableObject.h"
-#include "ArcInput.h"
-#include "ArcTime.h"
-#include "ArcLogger.h"
-#include "GameController.h"
-
-class GameController;
 
 class Player :
 	public MovableObject

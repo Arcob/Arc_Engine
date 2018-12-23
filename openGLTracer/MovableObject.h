@@ -1,9 +1,6 @@
 #pragma once
 #include "commom.h"
 #include "ArcBehaviour.h"
-#include "ArcInput.h"
-#include "ArcTime.h"
-
 
 class MovableObject :
 	public Arc_Engine::ArcBehaviour

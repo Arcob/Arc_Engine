@@ -1,4 +1,5 @@
 #include "Swb_MeshLoader.h" 
+#include "Swb_Model.h"
 
 namespace Swb_MeshLoader {
 

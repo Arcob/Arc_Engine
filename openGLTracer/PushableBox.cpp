@@ -1,16 +1,5 @@
 #include "PushableBox.h"
 
-
-
-/*PushableBox::PushableBox()
-{
-}
-
-
-PushableBox::~PushableBox()
-{
-}*/
-
 void PushableBox::Start()
 {
 	std::cout << "PushableBox Start" << std::endl;

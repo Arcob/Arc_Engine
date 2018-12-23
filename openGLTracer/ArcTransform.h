@@ -1,11 +1,5 @@
 #pragma once
-#include <glm/glm.hpp>
-#include <GL/glew.h>    
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtx/quaternion.hpp>
-#include <glm/gtc/quaternion.hpp>
-
+#include "commom.h"
 
 namespace Arc_Engine {
 	class ArcTransform

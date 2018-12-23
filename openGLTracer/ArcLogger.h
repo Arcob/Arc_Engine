@@ -1,7 +1,5 @@
 #pragma once
-
-#include <fstream>
-#include <iostream>
+#include "commom.h"
 
 namespace Arc_Engine {
 

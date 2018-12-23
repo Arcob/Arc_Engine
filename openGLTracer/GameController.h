@@ -1,13 +1,10 @@
 #pragma once
 #include "commom.h"
 #include "ArcBehaviour.h"
-#include "ArcInput.h"
-#include "ArcLogger.h"
-#include "Player.h"
-#include "MovableObject.h"
 #include "MovableCube.h"
 
 class Player;
+class MovableCube;
 
 class GameController :
 	public Arc_Engine::ArcBehaviour

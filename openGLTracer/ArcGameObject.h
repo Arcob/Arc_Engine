@@ -1,19 +1,12 @@
 #pragma once
-#include <glm/glm.hpp>
-#include <vector>
-#include <string>
-#include <memory>
-#include "ArcBehaviour.h"
-#include "ArcRenderer.h"
+
+#include "commom.h"
 #include "ArcTransform.h"
-#include "ArcGameObject.h"
-#include <fstream>
-#include <list>
-#include <iostream>
 
 namespace Arc_Engine {
 	
 	class ArcBehaviour;
+	class ArcRenderer;
 	class Camera;
 	class ArcGameObject
 	{

@@ -1,4 +1,5 @@
 #include "ArcGameObject.h"
+#include "ArcBehaviour.h"
 
 namespace Arc_Engine {
 

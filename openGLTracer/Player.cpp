@@ -1,15 +1,8 @@
 #include "Player.h"
-
-
-
-/*Player::Player()
-{
-}
-
-
-Player::~Player()
-{
-}*/
+#include "GameController.h"
+#include "ArcInput.h"
+#include "ArcTime.h"
+#include "ArcLogger.h"
 
 void Player::Start() {
 	MovableObject::Start();
