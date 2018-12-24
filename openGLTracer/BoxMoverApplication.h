@@ -3,15 +3,19 @@
 #include "ArcRenderer.h"
 
 
+
 class BoxMoverApplication :
 	public Arc_Engine::ArcApplication
 {
 public:
 	BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene);
-	~BoxMoverApplication();
+	void loadShaderAndCreateProgram(GLuint vertexShader, GLuint fragmentShader, std::string vertexShaderPath, std::string fragmentShaderPath);
+	void createGameObjects();
+	~BoxMoverApplication() = default;
 
 private:
 	std::string currentPath;
+	const GLuint WIDTH = 800, HEIGHT = 600;
 
 	const std::string shader_path = "\\shaders";
 	const std::string pushable_box_path = "\\resources\\wooden-crate3.jpg";

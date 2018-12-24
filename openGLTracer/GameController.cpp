@@ -1,4 +1,7 @@
 #include "GameController.h"
+#include "ArcInput.h"
+#include "ArcLogger.h"
+#include "Player.h"
 
 GameController* GameController::instance = nullptr;
 

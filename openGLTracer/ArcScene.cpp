@@ -11,7 +11,7 @@ namespace Arc_Engine {
 	}
 
 	void ArcScene::addGameObject(std::shared_ptr<Arc_Engine::ArcGameObject> gameObject) {
-		_sceneGameObjectObjects.push_back(gameObject);
+		_sceneGameObjectObjects.push_back(std::move(gameObject));
 	}
 
 	std::vector<std::shared_ptr<ArcGameObject>> ArcScene::getGameObjectsInScene() {

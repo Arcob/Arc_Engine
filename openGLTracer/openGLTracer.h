@@ -21,6 +21,7 @@
 #include "ArcScene.h"
 #include "ArcApplication.h"
 #include "ArcTextureLoader.h"
+#include "BoxMoverApplication.h"
 
 #define print Arc_Engine::ArcLogger::log 
 

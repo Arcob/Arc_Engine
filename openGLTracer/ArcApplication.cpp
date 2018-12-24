@@ -11,6 +11,10 @@ namespace Arc_Engine {
 
 	}
 
+	void ArcApplication::setMainCamera(std::shared_ptr<class Arc_Engine::Camera> camera) {
+		_mainCamera = camera;
+	}
+
 	std::shared_ptr<class ArcScene> ArcApplication::scene() {
 		return _scene;
 	}
