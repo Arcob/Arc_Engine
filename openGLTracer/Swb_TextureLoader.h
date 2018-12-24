@@ -2,7 +2,7 @@
 #ifndef __SWB_TEXTURE_LOADER__
 #define __SWB_TEXTURE_LOADER__
 
-#include "commom.h"
+#include "common.h"
 
 namespace Swb_TextureLoader 
 {

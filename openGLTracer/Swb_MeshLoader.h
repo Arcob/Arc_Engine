@@ -3,7 +3,8 @@
 #ifndef __SWB_MESH_LOADER__
 #define __SWB_MESH_LOADER__
 
-#include "commom.h"
+#include "common.h"
+#include "Swb_Model.h"
 
 class Swb_Model;
 

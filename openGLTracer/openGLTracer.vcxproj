@@ -23,7 +23,7 @@
     <ProjectGuid>{BCDB9C4F-E381-4D6D-87A1-EE2B0B131ED8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>openGLTracer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -157,10 +157,13 @@
     <ClInclude Include="ArcLogger.h" />
     <ClInclude Include="ArcRenderer.h" />
     <ClInclude Include="ArcScene.h" />
+    <ClInclude Include="ArcTextureLoader.h" />
     <ClInclude Include="ArcTime.h" />
+    <ClInclude Include="ArcTools.h" />
     <ClInclude Include="ArcTransform.h" />
+    <ClInclude Include="BoxMoverApplication.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="commom.h" />
+    <ClInclude Include="common.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="LightBundle.h" />
     <ClInclude Include="MovableCube.h" />
@@ -181,8 +184,11 @@
     <ClCompile Include="ArcLogger.cpp" />
     <ClCompile Include="ArcRenderer.cpp" />
     <ClCompile Include="ArcScene.cpp" />
+    <ClCompile Include="ArcTextureLoader.cpp" />
     <ClCompile Include="ArcTime.cpp" />
+    <ClCompile Include="ArcTools.cpp" />
     <ClCompile Include="ArcTransform.cpp" />
+    <ClCompile Include="BoxMoverApplication.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="LightBundle.cpp" />

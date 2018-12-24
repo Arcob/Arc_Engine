@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commom.h"
+#include "common.h"
 
 class Swb_Model
 {

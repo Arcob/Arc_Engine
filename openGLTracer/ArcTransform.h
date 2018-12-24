@@ -1,5 +1,5 @@
 #pragma once
-#include "commom.h"
+#include "common.h"
 
 namespace Arc_Engine {
 	class ArcTransform

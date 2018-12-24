@@ -2,7 +2,7 @@
 #ifndef __OPENGLTRACER__
 #define __OPENGLTRACER__
 
-#include "commom.h"
+#include "common.h"
 
 #include "FreeImage.h"
 #include "Swb_Model.h"
@@ -19,11 +19,13 @@
 #include "Player.h"
 #include "GameController.h"
 #include "ArcScene.h"
+#include "ArcApplication.h"
+#include "ArcTextureLoader.h"
 
 #define print Arc_Engine::ArcLogger::log 
 
-std::string currentPath;//"D:\\Workspace\\openGLTracer"
-//const std::string shader_path = "D:\\Workspace\\openGLTracer\\shaders";
+std::string currentPath;
+
 const std::string shader_path = "\\shaders";
 const std::string pushable_box_path = "\\resources\\wooden-crate3.jpg";
 const std::string wall_path = "\\resources\\edge.jpg";
@@ -34,8 +36,6 @@ const std::string model_path = "\\resources\\bunny.obj";
 GLuint vertexShader;
 GLuint fragmentShader;
 GLuint shaderProgram;
-GLuint vao;
-GLuint vbo;
 double gScrollY = 0.0;
 GLFWwindow* window;
 GLuint pushableBoxTexture;
@@ -45,8 +45,9 @@ GLuint playerTexture;
 Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
 std::shared_ptr<Arc_Engine::Camera> mainCamera;
-std::unique_ptr<Arc_Engine::ArcScene> mainScene;
+//std::shared_ptr<Arc_Engine::ArcScene> mainScene;
 double deltaTime;
+std::unique_ptr<Arc_Engine::ArcApplication> app;
 
 
 /*struct ArcRenderer {
@@ -65,10 +66,11 @@ double deltaTime;
 	std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;
 };*/
 
-Arc_Engine::ArcRenderer woodenCrate;
-Arc_Engine::ArcRenderer wall;
-Arc_Engine::ArcRenderer aim;
-Arc_Engine::ArcRenderer player;
+std::shared_ptr<Arc_Engine::ArcRenderer> woodenCrate;
+std::shared_ptr<Arc_Engine::ArcRenderer> wall;
+std::shared_ptr<Arc_Engine::ArcRenderer> aim;
+std::shared_ptr<Arc_Engine::ArcRenderer> player;
+
 std::list<Arc_Engine::ArcGameObject> gInstances;
 
 
@@ -119,9 +121,7 @@ GLfloat vertexData[] = {
 
 void setMainScene();
 
-void loadShader(std::string vertexShaderPath, std::string fragmentShaderPath);
-
-void setupBuffer();
+void loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath);
 
 void draw();
 
@@ -137,7 +137,7 @@ void treatMouseInput(float secondsElapsed);
 
 void OnScroll(GLFWwindow* window, double deltaX, double deltaY);
 
-void LoadRenderer(Arc_Engine::ArcRenderer* renderer, GLuint* texture);
+void LoadRenderer(std::shared_ptr<Arc_Engine::ArcRenderer> renderer, GLuint shaderProgram, size_t vertexDataSize, GLfloat *vertexData1, GLuint texture);
 
 void CreateInstances();
 

@@ -1,9 +1,10 @@
 #pragma once
-#include "commom.h"
+
+#include "common.h"
 
 namespace Arc_Engine {
 
-	static class ArcLogger
+	class ArcLogger
 	{
 	public:
 		template <typename T>

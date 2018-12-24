@@ -1,9 +1,9 @@
 #pragma once
-#include "commom.h"
+#include "common.h"
+#include "ArcGameObject.h"
+#include "LightBundle.h"
 
 namespace Arc_Engine {
-	class DirectionLight;
-	class ArcGameObject;
 
 	class ArcScene: public std::enable_shared_from_this<ArcScene>
 	{

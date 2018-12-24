@@ -1,12 +1,13 @@
 #pragma once
-
-#include "commom.h"
+#include "common.h"
+#include "ArcBehaviour.h"
+#include "ArcRenderer.h"
 #include "ArcTransform.h"
+#include "ArcGameObject.h"
 
 namespace Arc_Engine {
 	
 	class ArcBehaviour;
-	class ArcRenderer;
 	class Camera;
 	class ArcGameObject
 	{

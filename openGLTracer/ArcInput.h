@@ -1,9 +1,9 @@
 #pragma once
-#include "commom.h"
+#include "common.h"
 
 namespace Arc_Engine {
 
-	static class ArcInput
+	class ArcInput
 	{
 	public:
 		static bool getKeyDown(const int key);

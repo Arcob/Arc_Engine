@@ -1,6 +1,5 @@
 #pragma once
-#include "commom.h"
-#include "ArcScene.h"
+#include "common.h"
 
 namespace Arc_Engine {
 
@@ -9,7 +8,8 @@ namespace Arc_Engine {
 	public:
 		ArcApplication(std::shared_ptr<class ArcScene> inputScene);
 		virtual ~ArcApplication() = default;
-		void registerScene();
+		std::shared_ptr<class ArcScene> scene();
+		void registerSelf();
 
 	private:
 		bool _isRunning = true;
