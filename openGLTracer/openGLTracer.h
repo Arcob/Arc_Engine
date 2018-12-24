@@ -2,26 +2,7 @@
 #ifndef __OPENGLTRACER__
 #define __OPENGLTRACER__
 
-#include "commom.h"
-/*
-#include <fstream>
-#include <iostream>
-#include <streambuf>
-#include <vector>
-#include <list>
-#include <direct.h>
-#include <typeinfo>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/glm.hpp>
-
-// GLEW    
-#define GLEW_STATIC    
-#include <GL/glew.h>    
-
-// GLFW    
-#include <GLFW/glfw3.h>   
-*/
+#include "common.h"
 
 #include "FreeImage.h"
 #include "Swb_Model.h"
@@ -38,11 +19,12 @@
 #include "Player.h"
 #include "GameController.h"
 #include "ArcScene.h"
+#include "ArcApplication.h"
 
 #define print Arc_Engine::ArcLogger::log 
 
-std::string currentPath;//"D:\\Workspace\\openGLTracer"
-//const std::string shader_path = "D:\\Workspace\\openGLTracer\\shaders";
+std::string currentPath;
+
 const std::string shader_path = "\\shaders";
 const std::string pushable_box_path = "\\resources\\wooden-crate3.jpg";
 const std::string wall_path = "\\resources\\edge.jpg";
@@ -64,8 +46,9 @@ GLuint playerTexture;
 Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
 std::shared_ptr<Arc_Engine::Camera> mainCamera;
-std::unique_ptr<Arc_Engine::ArcScene> mainScene;
+//std::shared_ptr<Arc_Engine::ArcScene> mainScene;
 double deltaTime;
+std::unique_ptr<Arc_Engine::ArcApplication> app;
 
 
 /*struct ArcRenderer {
@@ -84,10 +67,11 @@ double deltaTime;
 	std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;
 };*/
 
-Arc_Engine::ArcRenderer woodenCrate;
-Arc_Engine::ArcRenderer wall;
-Arc_Engine::ArcRenderer aim;
-Arc_Engine::ArcRenderer player;
+std::shared_ptr<Arc_Engine::ArcRenderer> woodenCrate;
+std::shared_ptr<Arc_Engine::ArcRenderer> wall;
+std::shared_ptr<Arc_Engine::ArcRenderer> aim;
+std::shared_ptr<Arc_Engine::ArcRenderer> player;
+Arc_Engine::ArcRenderer playerCon;
 std::list<Arc_Engine::ArcGameObject> gInstances;
 
 
@@ -156,7 +140,7 @@ void treatMouseInput(float secondsElapsed);
 
 void OnScroll(GLFWwindow* window, double deltaX, double deltaY);
 
-void LoadRenderer(Arc_Engine::ArcRenderer* renderer, GLuint* texture);
+void LoadRenderer(std::shared_ptr<Arc_Engine::ArcRenderer> renderer, GLuint shaderProgram, size_t vertexDataSize, GLfloat *vertexData1, GLuint texture);
 
 void CreateInstances();
 

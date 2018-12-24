@@ -1,5 +1,5 @@
 #pragma once
-#include "commom.h"
+#include "common.h"
 #include "ArcBehaviour.h"
 #include "ArcInput.h"
 #include "ArcTime.h"

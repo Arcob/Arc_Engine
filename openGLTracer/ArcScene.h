@@ -1,5 +1,5 @@
 #pragma once
-#include "commom.h"
+#include "common.h"
 #include "ArcGameObject.h"
 #include "LightBundle.h"
 

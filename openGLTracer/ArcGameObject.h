@@ -1,15 +1,9 @@
 #pragma once
-#include <glm/glm.hpp>
-#include <vector>
-#include <string>
-#include <memory>
+#include "common.h"
 #include "ArcBehaviour.h"
 #include "ArcRenderer.h"
 #include "ArcTransform.h"
 #include "ArcGameObject.h"
-#include <fstream>
-#include <list>
-#include <iostream>
 
 namespace Arc_Engine {
 	

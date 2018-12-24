@@ -1,14 +1,9 @@
 #pragma once
-
-#include <GLFW/glfw3.h>
-#include <vector>
-
-#include <fstream>
-#include <iostream>
+#include "common.h"
 
 namespace Arc_Engine {
 
-	static class ArcInput
+	class ArcInput
 	{
 	public:
 		static bool getKeyDown(const int key);

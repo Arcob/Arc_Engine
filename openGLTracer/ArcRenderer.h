@@ -1,5 +1,5 @@
 #pragma once
-#include <GL/glew.h>   
+#include "common.h"
 
 namespace Arc_Engine {
 
@@ -7,6 +7,7 @@ namespace Arc_Engine {
 	{
 	public:
 		ArcRenderer() = default;
+		ArcRenderer(GLuint shaderProgram, size_t vertexDataSize, GLfloat vertexData[], GLuint texture);
 		~ArcRenderer() = default;
 
 		GLuint program;
@@ -16,6 +17,8 @@ namespace Arc_Engine {
 		GLenum drawType;
 		GLint drawStart;
 		GLint drawCount;
+
+		static std::shared_ptr<ArcRenderer> createRenderer(GLuint shaderProgram, GLfloat vertexData[], GLuint* texture);
 	};
 
 }

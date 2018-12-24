@@ -7,7 +7,11 @@ namespace Arc_Engine {
 	{
 	}
 
-	void registerScene() {
+	void ArcApplication::registerSelf() {
 
+	}
+
+	std::shared_ptr<class ArcScene> ArcApplication::scene() {
+		return _scene;
 	}
 }

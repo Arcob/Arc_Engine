@@ -2,7 +2,7 @@
 
 namespace Arc_Engine {
 
-	static class ArcTime
+	class ArcTime
 	{
 	public:
 		const static float deltaTime();

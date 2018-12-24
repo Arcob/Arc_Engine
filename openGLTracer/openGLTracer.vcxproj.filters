@@ -84,7 +84,10 @@
     <ClInclude Include="ArcApplication.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="commom.h">
+    <ClInclude Include="BoxMoverApplication.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -150,6 +153,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ArcApplication.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxMoverApplication.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

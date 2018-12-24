@@ -64,9 +64,4 @@ void Player::judgeMove(glm::vec2 deltaPosition) {
 		setTargetCoord(target);
 		_canMove = false;
 	}
-	/*glm::vec2 target = coord() + deltaPosition;
-	if (!GameController::instance->isWall(target)) {
-		setTargetCoord(target);
-		_canMove = false;
-	}*/
 }

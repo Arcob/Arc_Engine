@@ -1,17 +1,5 @@
 #include "GameController.h"
 
-
-
-
-/*GameController::GameController()
-{
-}
-
-
-GameController::~GameController()
-{
-}*/
-
 GameController* GameController::instance = nullptr;
 
 void GameController::Awake()
