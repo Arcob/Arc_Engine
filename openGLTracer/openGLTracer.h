@@ -20,6 +20,7 @@
 #include "GameController.h"
 #include "ArcScene.h"
 #include "ArcApplication.h"
+#include "ArcTextureLoader.h"
 
 #define print Arc_Engine::ArcLogger::log 
 
@@ -35,8 +36,6 @@ const std::string model_path = "\\resources\\bunny.obj";
 GLuint vertexShader;
 GLuint fragmentShader;
 GLuint shaderProgram;
-GLuint vao;
-GLuint vbo;
 double gScrollY = 0.0;
 GLFWwindow* window;
 GLuint pushableBoxTexture;
@@ -71,7 +70,7 @@ std::shared_ptr<Arc_Engine::ArcRenderer> woodenCrate;
 std::shared_ptr<Arc_Engine::ArcRenderer> wall;
 std::shared_ptr<Arc_Engine::ArcRenderer> aim;
 std::shared_ptr<Arc_Engine::ArcRenderer> player;
-Arc_Engine::ArcRenderer playerCon;
+
 std::list<Arc_Engine::ArcGameObject> gInstances;
 
 
@@ -122,9 +121,7 @@ GLfloat vertexData[] = {
 
 void setMainScene();
 
-void loadShader(std::string vertexShaderPath, std::string fragmentShaderPath);
-
-void setupBuffer();
+void loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath);
 
 void draw();
 
