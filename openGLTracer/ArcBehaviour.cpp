@@ -11,7 +11,7 @@ namespace Arc_Engine {
 	{
 	}*/
 
-	ArcGameObject* const ArcBehaviour::gameObject() const{
+	std::shared_ptr<ArcGameObject> const ArcBehaviour::gameObject() const{
 		return _gameObject;
 	}
 
@@ -31,7 +31,7 @@ namespace Arc_Engine {
 	}
 
 
-	void ArcBehaviour::setGameObject(ArcGameObject* gameObject) {
+	void ArcBehaviour::setGameObject(std::shared_ptr<ArcGameObject> gameObject) {
 		_gameObject = gameObject;
 	}
 

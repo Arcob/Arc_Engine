@@ -2,6 +2,7 @@
 #include "ArcInput.h"
 #include "ArcLogger.h"
 #include "Player.h"
+#include "MovableCube.h"
 
 GameController* GameController::instance = nullptr;
 

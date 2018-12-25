@@ -12,11 +12,11 @@ namespace Arc_Engine {
 		virtual void Awake();
 		virtual void Start();
 		virtual void Update();
-		ArcGameObject* const gameObject() const;
-		void setGameObject(ArcGameObject* gameObject);
+		std::shared_ptr<ArcGameObject> const gameObject() const;
+		void setGameObject(std::shared_ptr<ArcGameObject> gameObject);
 
 	private:
-		ArcGameObject *_gameObject = nullptr;
+		std::shared_ptr<ArcGameObject> _gameObject = nullptr;
 
 	};
 }

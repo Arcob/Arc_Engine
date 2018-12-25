@@ -13,11 +13,12 @@ namespace Arc_Engine {
 	}*/
 
 	std::list<Arc_Engine::ArcGameObject>* ArcGameObject::_gameObjectList = nullptr;
+	std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>> ArcGameObject::_gameObjectVector = std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>>();
 
 	void Arc_Engine::ArcGameObject::attachScript(std::shared_ptr<Arc_Engine::ArcBehaviour> script) {
 		ArcBehaviourList.push_back(script);
 		//std::cout << " a: " << this->behaviourListLength() << std::endl;
-		script->setGameObject(this);
+		script->setGameObject(std::make_shared<ArcGameObject>(*this));
 		//std::cout << " b: " << script->gameObject()->behaviourListLength() << std::endl;
 	}
 
@@ -30,14 +31,14 @@ namespace Arc_Engine {
 	}
 
 	const ArcTransform ArcGameObject::transform() const {
+		return *_transform;
+	}
+
+	std::shared_ptr<ArcTransform> const ArcGameObject::transformPtr(){
 		return _transform;
 	}
 
-	ArcTransform* const ArcGameObject::transformPtr(){
-		return &_transform;
-	}
-
-	void ArcGameObject::setTransfrom(ArcTransform transform) {
+	void ArcGameObject::setTransfrom(std::shared_ptr<ArcTransform> transform) {
 		_transform = transform;
 	}
 
@@ -59,6 +60,10 @@ namespace Arc_Engine {
 
 	void ArcGameObject::setGameObjectList(std::list<Arc_Engine::ArcGameObject>* list) {
 		_gameObjectList = list;
+	}
+
+	void ArcGameObject::setGameObjectVector(std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>> vector) {
+		_gameObjectVector = vector;
 	}
 
 	/*template<typename T>

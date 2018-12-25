@@ -19,8 +19,8 @@ namespace Arc_Engine {
 		const int behaviourListLength() const;
 		const std::vector<std::shared_ptr<Arc_Engine::ArcBehaviour>> getBehaviourList() const;
 		const ArcTransform transform() const;
-		ArcTransform* const transformPtr();
-		void setTransfrom(ArcTransform transfrom);
+		std::shared_ptr<ArcTransform> const transformPtr();
+		void setTransfrom(std::shared_ptr<ArcTransform> transfrom);
 		void setName(std::string name);
 		const std::string name() const;
 		void setRenderer(std::shared_ptr<ArcRenderer> renderer);
@@ -39,8 +39,10 @@ namespace Arc_Engine {
 
 		static void setGameObjectList(std::list<Arc_Engine::ArcGameObject>* list);
 
+		static void setGameObjectVector(std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>> vector);
+
 		//用到模板的函数声明和定义要放在一起否则会出现链接错误
-		template<typename T>
+		/*template<typename T>
 		static std::vector<Arc_Engine::ArcGameObject*> findGameObjectsOfType() {
 			std::vector<Arc_Engine::ArcGameObject*> result = std::vector<Arc_Engine::ArcGameObject*>();
 			std::list<Arc_Engine::ArcGameObject>::iterator it;//start
@@ -56,12 +58,31 @@ namespace Arc_Engine {
 				}
 			}
 			return result;
+		}*/
+
+		template<typename T>
+		static std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>> findGameObjectsOfType() {
+			std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>> result;// = std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>>();
+			//std::list<Arc_Engine::ArcGameObject>::iterator it;//start
+			//std::cout << _gameObjectList->size() << std::endl;
+			for (int i=0; i < _gameObjectVector.size(); i++) {
+				for (int j = 0; j < (_gameObjectVector[i]->behaviourListLength()); j++) {
+					//(it->getBehaviourList())[i]->Start();
+					//if (dynamic_cast<T*>(&*((it->getBehaviourList())[i])) != nullptr) {
+					if (dynamic_cast<T*>(((_gameObjectVector[i]->getBehaviourList())[j]).get()) != nullptr) {
+						//Arc_Engine::ArcGameObject* temp = _gameObjectVector[i];
+						result.push_back(_gameObjectVector[i]);
+					}
+				}
+			}
+			return result;
 		}
 
 	private:
 		static std::list<Arc_Engine::ArcGameObject>* _gameObjectList;
+		static std::vector<std::shared_ptr<Arc_Engine::ArcGameObject>> _gameObjectVector;
 		std::vector<std::shared_ptr<ArcBehaviour>> ArcBehaviourList;
-		ArcTransform _transform;
+		std::shared_ptr<ArcTransform> _transform;
 		std::shared_ptr<ArcRenderer> _renderer = nullptr;
 		std::string _name = "EmptyGameObject";
 	};

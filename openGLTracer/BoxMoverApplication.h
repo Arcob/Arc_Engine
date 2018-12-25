@@ -26,7 +26,6 @@ private:
 
 	GLuint vertexShader;
 	GLuint fragmentShader;
-	GLuint shaderProgram;
 
 	std::shared_ptr<Arc_Engine::ArcRenderer> woodenCrate;
 	std::shared_ptr<Arc_Engine::ArcRenderer> wall;

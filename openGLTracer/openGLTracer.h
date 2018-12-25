@@ -24,6 +24,7 @@
 #include "BoxMoverApplication.h"
 
 #define print Arc_Engine::ArcLogger::log 
+#define Application BoxMoverApplication
 
 std::string currentPath;
 
@@ -47,7 +48,7 @@ Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
 std::shared_ptr<Arc_Engine::Camera> mainCamera;
 //std::shared_ptr<Arc_Engine::ArcScene> mainScene;
-double deltaTime;
+float deltaTime;
 std::unique_ptr<Arc_Engine::ArcApplication> app;
 
 
@@ -150,7 +151,7 @@ glm::mat4 scale(GLfloat x, GLfloat y, GLfloat z);
 
 glm::mat4 rotate(GLfloat x, GLfloat y, GLfloat z, GLfloat angle);
 
-void RenderInstance(const Arc_Engine::ArcGameObject& inst);
+void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst);
 
 void PrintUpdate();
 
