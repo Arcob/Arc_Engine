@@ -9,58 +9,36 @@
 #include "PushableBox.h"
 #include "LightBundle.h"
 #include "ArcGameObject.h"
+#include "ArcShaderProgramCreater.h"
 
 
 BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene): ArcApplication(inputScene),
 	vertexShader(0), fragmentShader(0), pushableBoxTexture(0), wallTexture(0), aimTexture(0), playerTexture(0)
 {
 	currentPath = Arc_Engine::ArcTools::getCurrentPath();
-	loadShaderAndCreateProgram(vertexShader, fragmentShader, currentPath + shader_path + "\\hw2\\hw2.vert", currentPath + shader_path + "\\hw2\\hw2.frag");
+	
+	//加载资源生成renderer
+	diffuseShaderProgram = Arc_Engine::ArcShaderProgramCreater::loadShaderAndCreateProgram(vertexShader, fragmentShader, currentPath + shader_path + "\\hw2\\hw2.vert", currentPath + shader_path + "\\hw2\\hw2.frag");
+	
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + pushable_box_path, &pushableBoxTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + wall_path, &wallTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + aim_path, &aimTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + player_path, &playerTexture);
 	
-	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(ArcApplication::shaderProgram(), sizeof(vertexData), vertexData, pushableBoxTexture);
-	wall = std::make_shared<Arc_Engine::ArcRenderer>(ArcApplication::shaderProgram(), sizeof(vertexData), vertexData, wallTexture);
-	aim = std::make_shared<Arc_Engine::ArcRenderer>(ArcApplication::shaderProgram(), sizeof(vertexData), vertexData, aimTexture);
-	player = std::make_shared<Arc_Engine::ArcRenderer>(ArcApplication::shaderProgram(), sizeof(vertexData), vertexData, playerTexture);
+	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, pushableBoxTexture);
+	wall = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, wallTexture);
+	aim = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, aimTexture);
+	player = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, playerTexture);
 	
+	//生成光照
 	auto cur_directionLight = std::make_shared <Arc_Engine::DirectionLight>();
 	cur_directionLight->setAmbient(glm::vec3(0.5f, 0.5f, 0.5f));
 	cur_directionLight->setDiffuse(glm::vec3(0.6f, 0.6f, 0.6f));
 	cur_directionLight->setDirection(glm::vec3(0.5f, 0.8f, 0.0f));
 	ArcApplication::scene()->setLight(cur_directionLight);
 
+	//生成场景中的物体
 	createGameObjects();
-}
-
-void BoxMoverApplication::loadShaderAndCreateProgram(GLuint vertexShader, GLuint fragmentShader, std::string vertexShaderPath, std::string fragmentShaderPath) {
-	std::ifstream v(vertexShaderPath);
-	std::string vertBuffer((std::istreambuf_iterator<char>(v)), std::istreambuf_iterator<char>());
-	std::ifstream f(fragmentShaderPath);
-	std::string fragBuffer((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
-
-	const GLchar* vertCharArray = vertBuffer.c_str();
-	const GLchar* fragCharArray = fragBuffer.c_str();
-	const GLint vertCharArrayLength = vertBuffer.size();
-	const GLint fragCharArrayLength = fragBuffer.size();
-
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-	glShaderSource(vertexShader, 1, &vertCharArray, &vertCharArrayLength);
-	glShaderSource(fragmentShader, 1, &fragCharArray, &fragCharArrayLength);
-
-	glCompileShader(vertexShader);
-	glCompileShader(fragmentShader);
-
-	ArcApplication::setShaderProgram(glCreateProgram());
-	//std::cout << ArcApplication::shaderProgram() << std::endl;
-	glAttachShader(ArcApplication::shaderProgram(), vertexShader);
-	glAttachShader(ArcApplication::shaderProgram(), fragmentShader);
-
-	glLinkProgram(ArcApplication::shaderProgram());
 }
 
 void BoxMoverApplication::createGameObjects() {

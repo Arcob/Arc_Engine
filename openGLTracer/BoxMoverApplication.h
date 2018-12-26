@@ -9,7 +9,6 @@ class BoxMoverApplication :
 {
 public:
 	BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene);
-	void loadShaderAndCreateProgram(GLuint vertexShader, GLuint fragmentShader, std::string vertexShaderPath, std::string fragmentShaderPath);
 	void createGameObjects();
 	~BoxMoverApplication() = default;
 
@@ -26,6 +25,8 @@ private:
 
 	GLuint vertexShader;
 	GLuint fragmentShader;
+
+	GLuint diffuseShaderProgram;
 
 	std::shared_ptr<Arc_Engine::ArcRenderer> woodenCrate;
 	std::shared_ptr<Arc_Engine::ArcRenderer> wall;
