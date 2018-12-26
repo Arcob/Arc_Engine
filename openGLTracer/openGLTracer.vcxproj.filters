@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="openGLTracer.h">
-      <Filter>头文件\Mine</Filter>
-    </ClInclude>
     <ClInclude Include="Swb_MeshLoader.h">
       <Filter>头文件\Mine</Filter>
     </ClInclude>
@@ -99,11 +96,11 @@
     <ClInclude Include="ArcShaderProgramCreater.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ArcEngineDriver.h">
+      <Filter>头文件\Mine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="openGLTracer.cpp">
-      <Filter>源文件\Mine</Filter>
-    </ClCompile>
     <ClCompile Include="Swb_MeshLoader.cpp">
       <Filter>源文件\Mine</Filter>
     </ClCompile>
@@ -175,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="ArcShaderProgramCreater.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcEngineDriver.cpp">
+      <Filter>源文件\Mine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
