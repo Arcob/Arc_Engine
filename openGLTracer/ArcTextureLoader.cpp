@@ -11,7 +11,7 @@ namespace Arc_Engine {
 			std::cerr << "ERROR: Failed to determine the filetype for " << texturePath.c_str() << std::endl;
 			return;
 		}
-		std::cout << texturePath.c_str() << std::endl;
+		//std::cout << texturePath.c_str() << std::endl;
 		//2 ¼ÓÔØÍ¼Æ¬
 		FIBITMAP *dib = FreeImage_Load(fifmt, texturePath.c_str(), 0);
 		if (!dib) {

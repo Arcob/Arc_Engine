@@ -99,6 +99,9 @@
     <ClInclude Include="ArcEngineDriver.h">
       <Filter>头文件\Mine</Filter>
     </ClInclude>
+    <ClInclude Include="DriverSetting.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Swb_MeshLoader.cpp">

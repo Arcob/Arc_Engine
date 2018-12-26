@@ -16,7 +16,7 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	vertexShader(0), fragmentShader(0), pushableBoxTexture(0), wallTexture(0), aimTexture(0), playerTexture(0)
 {
 	currentPath = Arc_Engine::ArcTools::getCurrentPath();
-	
+	ArcApplication::setName("BoxMoverApplication");
 	//加载资源生成renderer
 	diffuseShaderProgram = Arc_Engine::ArcShaderProgramCreater::loadShaderAndCreateProgram(vertexShader, fragmentShader, currentPath + shader_path + "\\hw2\\hw2.vert", currentPath + shader_path + "\\hw2\\hw2.frag");
 	

@@ -97,7 +97,7 @@ namespace Arc_Engine {
 	}
 	
 	glm::vec3 ArcTransform::up() const {
-		glm::vec4 right = glm::inverse(ArcTransform::rotationMatrix()) * glm::vec4(1, 0, 0, 1);
+		glm::vec4 right = glm::inverse(ArcTransform::rotationMatrix()) * glm::vec4(0, 1, 0, 1);
 		return glm::vec3(right);
 	}
 
