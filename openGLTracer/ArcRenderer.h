@@ -17,8 +17,6 @@ namespace Arc_Engine {
 		GLenum drawType;
 		GLint drawStart;
 		GLint drawCount;
-
-		static std::shared_ptr<ArcRenderer> createRenderer(GLuint shaderProgram, GLfloat vertexData[], GLuint* texture);
 	};
 
 }

@@ -8,25 +8,28 @@ class BoxMoverApplication :
 	public Arc_Engine::ArcApplication
 {
 public:
-	BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene);
+	BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene, GLuint WIDTH, GLuint HEIGHT);
 	void createGameObjects();
+	void createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap);
 	~BoxMoverApplication() = default;
 
 private:
 	std::string currentPath;
-	const GLuint WIDTH = 800, HEIGHT = 600;
 
 	const std::string shader_path = "\\shaders";
+	const std::string normal_vert_shader_path = "\\boxShader\\box_vert.vert";
+	const std::string normal_frag_shader_path = "\\boxShader\\box_frag.frag";
+	const std::string depth_vert_shader_path = "\\boxShader\\depth_vert.vert";
+	const std::string depth_frag_shader_path = "\\boxShader\\depth_frag.frag";
 	const std::string pushable_box_path = "\\resources\\wooden-crate3.jpg";
 	const std::string wall_path = "\\resources\\edge.jpg";
 	const std::string aim_path = "\\resources\\aim.jpg";
 	const std::string player_path = "\\resources\\PandaPlayer.jpg";
 	const std::string model_path = "\\resources\\bunny.obj";
 
-	GLuint vertexShader;
-	GLuint fragmentShader;
-
 	GLuint diffuseShaderProgram;
+	GLuint simpleDepthShaderProgram;
+	GLuint depthMapFBO;
 
 	std::shared_ptr<Arc_Engine::ArcRenderer> woodenCrate;
 	std::shared_ptr<Arc_Engine::ArcRenderer> wall;
@@ -37,6 +40,8 @@ private:
 	GLuint wallTexture;
 	GLuint aimTexture;
 	GLuint playerTexture;
+
+	GLuint depthMap;
 	
 	GLfloat vertexData[288] = {
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f,1.0f,	// A

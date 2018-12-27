@@ -12,18 +12,23 @@
 #include "ArcShaderProgramCreater.h"
 
 
-BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene): ArcApplication(inputScene),
-	vertexShader(0), fragmentShader(0), pushableBoxTexture(0), wallTexture(0), aimTexture(0), playerTexture(0)
+BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene, GLuint WIDTH, GLuint HEIGHT): ArcApplication(inputScene, WIDTH, HEIGHT),
+	depthMapFBO(0), depthMap(0), pushableBoxTexture(0), wallTexture(0), aimTexture(0), playerTexture(0)
 {
+	
 	currentPath = Arc_Engine::ArcTools::getCurrentPath();
 	ArcApplication::setName("BoxMoverApplication");
 	//加载资源生成renderer
-	diffuseShaderProgram = Arc_Engine::ArcShaderProgramCreater::loadShaderAndCreateProgram(vertexShader, fragmentShader, currentPath + shader_path + "\\hw2\\hw2.vert", currentPath + shader_path + "\\hw2\\hw2.frag");
-	
+	diffuseShaderProgram = Arc_Engine::ArcShaderProgramCreater::loadShaderAndCreateProgram(currentPath + shader_path + normal_vert_shader_path, currentPath + shader_path + normal_frag_shader_path);
+	simpleDepthShaderProgram = Arc_Engine::ArcShaderProgramCreater::loadShaderAndCreateProgram(currentPath + shader_path + depth_vert_shader_path, currentPath + shader_path + depth_frag_shader_path);
+
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + pushable_box_path, &pushableBoxTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + wall_path, &wallTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + aim_path, &aimTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + player_path, &playerTexture);
+	
+	Arc_Engine::ArcTextureLoader::createDepthMap(&depthMap); //创建shadow用的depthMap
+	createShadowBuffer(&depthMapFBO, depthMap);
 	
 	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, pushableBoxTexture);
 	wall = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, wallTexture);
@@ -41,6 +46,17 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	createGameObjects();
 }
 
+void BoxMoverApplication::createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap) {
+	glGenFramebuffers(1, depthMapFBO);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, *depthMapFBO);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+	glDrawBuffer(GL_NONE);
+	glReadBuffer(GL_NONE);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+}
+
 void BoxMoverApplication::createGameObjects() {
 	auto tempGameObject0 = std::make_shared<Arc_Engine::ArcGameObject>();
 	auto tempTransform = std::make_shared<Arc_Engine::ArcTransform>();
@@ -49,7 +65,7 @@ void BoxMoverApplication::createGameObjects() {
 	tempGameObject0->setName("Camera");
 	tempGameObject0->setTransfrom(tempTransform);
 	auto mainCamera = std::make_shared<Arc_Engine::Camera>();
-	mainCamera->setViewportAspectRatio(WIDTH / HEIGHT);
+	mainCamera->setViewportAspectRatio(ArcApplication::width() / ArcApplication::height());
 	tempGameObject0->attachScript(mainCamera);
 	ArcApplication::setMainCamera(mainCamera);
 	auto gameController = std::make_shared<GameController>();

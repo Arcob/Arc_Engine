@@ -2,13 +2,13 @@
 
 namespace Arc_Engine {
 
-	ArcApplication::ArcApplication(std::shared_ptr<class ArcScene> inputScene) :
-		_isRunning(true), _scene(std::move(inputScene))
+	ArcApplication::ArcApplication(std::shared_ptr<class ArcScene> inputScene, GLuint WIDTH, GLuint HEIGHT):
+		_isRunning(true), _width(WIDTH), _height(HEIGHT), _scene(std::move(inputScene))
 	{
 	}
 
 	void ArcApplication::registerSelf() {
-
+		
 	}
 
 	void ArcApplication::setMainCamera(std::shared_ptr<class Arc_Engine::Camera> camera) {
@@ -29,5 +29,12 @@ namespace Arc_Engine {
 
 	void ArcApplication::setName(std::string name) {
 		_name = name;
+	}
+
+	const GLuint ArcApplication::width() {
+		return _width;
+	}
+	const GLuint ArcApplication::height() {
+		return _height;
 	}
 }

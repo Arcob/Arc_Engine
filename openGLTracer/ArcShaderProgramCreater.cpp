@@ -2,7 +2,7 @@
 
 namespace Arc_Engine {
 
-	GLuint ArcShaderProgramCreater::loadShaderAndCreateProgram(GLuint vertexShader, GLuint fragmentShader, std::string vertexShaderPath, std::string fragmentShaderPath) {
+	GLuint ArcShaderProgramCreater::loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath) {
 		std::ifstream v(vertexShaderPath);
 		std::string vertBuffer((std::istreambuf_iterator<char>(v)), std::istreambuf_iterator<char>());
 		std::ifstream f(fragmentShaderPath);
@@ -13,8 +13,8 @@ namespace Arc_Engine {
 		const GLint vertCharArrayLength = vertBuffer.size();
 		const GLint fragCharArrayLength = fragBuffer.size();
 
-		vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
 		glShaderSource(vertexShader, 1, &vertCharArray, &vertCharArrayLength);
 		glShaderSource(fragmentShader, 1, &fragCharArray, &fragCharArrayLength);
