@@ -9,7 +9,7 @@
 #include "PushableBox.h"
 #include "LightBundle.h"
 #include "ArcGameObject.h"
-#include "ArcShaderProgramCreater.h"
+#include "ArcMaterial.h"
 
 
 BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene, GLuint WIDTH, GLuint HEIGHT): ArcApplication(inputScene, WIDTH, HEIGHT),
@@ -19,8 +19,10 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	currentPath = Arc_Engine::ArcTools::getCurrentPath();
 	ArcApplication::setName("BoxMoverApplication");
 	//加载资源生成renderer
-	diffuseShaderProgram = Arc_Engine::ArcShaderProgramCreater::loadShaderAndCreateProgram(currentPath + shader_path + normal_vert_shader_path, currentPath + shader_path + normal_frag_shader_path);
-	simpleDepthShaderProgram = Arc_Engine::ArcShaderProgramCreater::loadShaderAndCreateProgram(currentPath + shader_path + depth_vert_shader_path, currentPath + shader_path + depth_frag_shader_path);
+	diffuseShaderProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(currentPath + shader_path + normal_vert_shader_path, currentPath + shader_path + normal_frag_shader_path);
+	simpleDepthShaderProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(currentPath + shader_path + depth_vert_shader_path, currentPath + shader_path + depth_frag_shader_path);
+	
+	diffuseShaderMaterial = std::make_shared<Arc_Engine::ArcMaterial>(currentPath + shader_path + normal_vert_shader_path, currentPath + shader_path + normal_frag_shader_path);
 
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + pushable_box_path, &pushableBoxTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + wall_path, &wallTexture);
@@ -30,10 +32,10 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	Arc_Engine::ArcTextureLoader::createDepthMap(&depthMap); //创建shadow用的depthMap
 	createShadowBuffer(&depthMapFBO, depthMap);
 	
-	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, pushableBoxTexture);
-	wall = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, wallTexture);
-	aim = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, aimTexture);
-	player = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderProgram, sizeof(vertexData), vertexData, playerTexture);
+	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, pushableBoxTexture);
+	wall = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, wallTexture);
+	aim = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, aimTexture);
+	player = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, playerTexture);
 	
 	//生成光照
 	auto cur_directionLight = std::make_shared <Arc_Engine::DirectionLight>();

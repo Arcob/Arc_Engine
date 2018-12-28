@@ -1,6 +1,7 @@
 #pragma once
 #include "ArcApplication.h"
 #include "ArcRenderer.h"
+#include "ArcMaterial.h"
 
 
 
@@ -30,6 +31,8 @@ private:
 	GLuint diffuseShaderProgram;
 	GLuint simpleDepthShaderProgram;
 	GLuint depthMapFBO;
+
+	std::shared_ptr<Arc_Engine::ArcMaterial> diffuseShaderMaterial;
 
 	std::shared_ptr<Arc_Engine::ArcRenderer> woodenCrate;
 	std::shared_ptr<Arc_Engine::ArcRenderer> wall;

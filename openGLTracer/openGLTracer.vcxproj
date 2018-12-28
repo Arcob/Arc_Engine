@@ -157,7 +157,7 @@
     <ClInclude Include="ArcLogger.h" />
     <ClInclude Include="ArcRenderer.h" />
     <ClInclude Include="ArcScene.h" />
-    <ClInclude Include="ArcShaderProgramCreater.h" />
+    <ClInclude Include="ArcMaterial.h" />
     <ClInclude Include="ArcTextureLoader.h" />
     <ClInclude Include="ArcTime.h" />
     <ClInclude Include="ArcTools.h" />
@@ -186,7 +186,7 @@
     <ClCompile Include="ArcLogger.cpp" />
     <ClCompile Include="ArcRenderer.cpp" />
     <ClCompile Include="ArcScene.cpp" />
-    <ClCompile Include="ArcShaderProgramCreater.cpp" />
+    <ClCompile Include="ArcMaterial.cpp" />
     <ClCompile Include="ArcTextureLoader.cpp" />
     <ClCompile Include="ArcTime.cpp" />
     <ClCompile Include="ArcTools.cpp" />

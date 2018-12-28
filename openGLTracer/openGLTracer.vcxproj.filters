@@ -93,13 +93,13 @@
     <ClInclude Include="ArcTools.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ArcShaderProgramCreater.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ArcEngineDriver.h">
       <Filter>头文件\Mine</Filter>
     </ClInclude>
     <ClInclude Include="DriverSetting.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcMaterial.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -173,11 +173,11 @@
     <ClCompile Include="ArcTools.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ArcShaderProgramCreater.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="ArcEngineDriver.cpp">
       <Filter>源文件\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcMaterial.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

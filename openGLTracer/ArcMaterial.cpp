@@ -1,8 +1,18 @@
-#include "ArcShaderProgramCreater.h"
+#include "ArcMaterial.h"
 
 namespace Arc_Engine {
 
-	GLuint ArcShaderProgramCreater::loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath) {
+	ArcMaterial::ArcMaterial(std::string vertexShaderPath, std::string fragmentShaderPath):
+		_programHandle(loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath))
+	{
+		//_programHandle = loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath);
+	}
+
+	const GLuint ArcMaterial::program() {
+		return _programHandle;
+	}
+
+	GLuint ArcMaterial::loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath) {
 		std::ifstream v(vertexShaderPath);
 		std::string vertBuffer((std::istreambuf_iterator<char>(v)), std::istreambuf_iterator<char>());
 		std::ifstream f(fragmentShaderPath);
