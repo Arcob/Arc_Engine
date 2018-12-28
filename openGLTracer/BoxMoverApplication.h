@@ -19,8 +19,8 @@ private:
 	const std::string shader_path = "\\shaders";
 	const std::string normal_vert_shader_path = "\\boxShader\\box_vert.vert";
 	const std::string normal_frag_shader_path = "\\boxShader\\box_frag.frag";
-	const std::string depth_vert_shader_path = "\\boxShader\\depth_vert.vert";
-	const std::string depth_frag_shader_path = "\\boxShader\\depth_frag.frag";
+	const std::string depth_vert_shader_path = "\\shadowShader\\depth_vert.vert";
+	const std::string depth_frag_shader_path = "\\shadowShader\\depth_frag.frag";
 	const std::string pushable_box_path = "\\resources\\wooden-crate3.jpg";
 	const std::string wall_path = "\\resources\\edge.jpg";
 	const std::string aim_path = "\\resources\\aim.jpg";

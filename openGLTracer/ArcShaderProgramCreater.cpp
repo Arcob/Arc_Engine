@@ -12,7 +12,7 @@ namespace Arc_Engine {
 		const GLchar* fragCharArray = fragBuffer.c_str();
 		const GLint vertCharArrayLength = vertBuffer.size();
 		const GLint fragCharArrayLength = fragBuffer.size();
-
+		
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 

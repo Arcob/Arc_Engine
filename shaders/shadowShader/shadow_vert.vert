@@ -1,12 +1,11 @@
 #version 330
 
-precision mediump float;
-attribute vec4 aPosition;
-uniform mat4 uMvp;
-uniform mat4 uShadowMvp;
-varying vec4 vTexCoord;
+layout (location = 0) in vec3 position;
 
-void main() {
-    gl_Position = uMvp*aPosition;
-    vTexCoord = uShadowMvp * aPosition;
+uniform mat4 lightSpaceMatrix;
+uniform mat4 model;
+
+void main()
+{
+    gl_Position = lightSpaceMatrix * model * vec4(position, 1.0f);
 }
