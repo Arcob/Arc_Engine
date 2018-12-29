@@ -38,8 +38,9 @@ GLuint depthMapFBO;
 GLuint depthMap;
 GLuint simpleDepthShaderProgram;
 GLuint debugDepthShaderProgram;
+glm::mat4 lightSpaceMatrix;
 
-std::shared_ptr<Arc_Engine::ArcMaterial> diffuseShaderMaterial;
+std::shared_ptr<Arc_Engine::ArcMaterial> depthMaterial;
 
 void draw();
 
@@ -61,6 +62,6 @@ void createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap);
 
 void RenderQuad();
 
-void RenderDepthMap(std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
+void RenderDepthMap(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
 
 #endif // !__OPENGLTRACER__

@@ -1,10 +1,12 @@
 #version 330
 
 uniform sampler2D U_MainTexture;
+uniform sampler2D ShadowMap;
 
 in vec3 FragPos;
 in vec2 TexCoord;
 in vec3 FragNormal;
+in vec4 FragPosLightSpace;
 
 out vec4 finalColor;
 
@@ -19,26 +21,26 @@ struct LightAttr
 uniform LightAttr light;
 uniform vec3 viewPos;
 
+float ShadowCalculation(vec4 fragPosLightSpace)
+{
+    // 执行透视除法
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // 变换到[0,1]的范围
+    projCoords = projCoords * 0.5 + 0.5;
+    // 取得最近点的深度(使用[0,1]范围下的fragPosLight当坐标)
+    float closestDepth = texture(ShadowMap, projCoords.xy).r; 
+    // 取得当前片元在光源视角下的深度
+    float currentDepth = projCoords.z;
+    // 检查当前片元是否在阴影中
+    float shadow = currentDepth > closestDepth  ? 1.0 : 0.0;
+
+    return shadow;
+}
+
 void main() {
-    /*vec3	ambient = light.ambient * vec3(texture(material.diffuseMap, TextCoord));
-
-	// 漫反射光成分 此时需要光线方向为指向光源
-    vec3	lightDir = normalize(-light.direction);	// 翻转方向光源的方向
-	vec3	normal = normalize(FragNormal);
-	float	diffFactor = max(dot(lightDir, normal), 0.0);
-	vec3	diffuse = diffFactor * light.diffuse * vec3(texture(material.diffuseMap, TextCoord));
-
-    // 镜面反射成分 此时需要光线方向为由光源指出
-	float	specularStrength = 0.5f;
-	vec3	reflectDir = normalize(reflect(-lightDir, normal));
-	vec3	viewDir = normalize(viewPos - FragPos);
-	float	specFactor = pow(max(dot(reflectDir, viewDir), 0.0), material.shininess);
-	vec3	specular = specFactor * light.specular * vec3(texture(material.specularMap, TextCoord));
-
-	vec3	result = ambient + diffuse + specular;
-	finalColor	= vec4(result , 1.0f);*/
-
 	vec3	ambient = light.ambient;
+
+	float shadow = ShadowCalculation(FragPosLightSpace);  
 
 	// 漫反射光成分 此时需要光线方向为指向光源
     vec3	lightDir = normalize(-light.direction);	// 翻转方向光源的方向
@@ -48,9 +50,8 @@ void main() {
 
 	vec4 albedo = texture(U_MainTexture, TexCoord);
 
-	vec3	result = ambient + diffuse;
+	vec3	result = ambient + ((1.0 - shadow) * diffuse);
 	finalColor	= vec4(result , 1.0f) * albedo;
 
-    //finalColor = texture(U_MainTexture, TexCoord);
-    //finalColor = vec4(fragTexCoord,0,1.0);
 }
+

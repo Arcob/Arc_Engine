@@ -6,6 +6,14 @@ namespace Arc_Engine {
 		return _light;
 	}
 
+	const GLuint ArcScene::shadowTexture() const {
+		return _shadowTexture;
+	}
+
+	void ArcScene::setShadowTexture(GLuint shadowTexture) {
+		_shadowTexture = shadowTexture;
+	}
+
 	void ArcScene::setLight(std::shared_ptr<Arc_Engine::DirectionLight> light) {
 		_light = light;
 	}

@@ -11,11 +11,14 @@ namespace Arc_Engine {
 		std::vector<std::shared_ptr<ArcGameObject>> getGameObjectsInScene();
 		const std::shared_ptr<Arc_Engine::DirectionLight> light() const;
 		void setLight(std::shared_ptr<Arc_Engine::DirectionLight> light); //之后把light改成基类？
+		const GLuint shadowTexture() const;
+		void setShadowTexture(GLuint shadowTexture);
 		void addGameObject(std::shared_ptr<Arc_Engine::ArcGameObject> gameObject);
 
 	private:
 		std::vector<std::shared_ptr<ArcGameObject>> _sceneGameObjectObjects;
 		std::shared_ptr<Arc_Engine::DirectionLight> _light;
+		GLuint _shadowTexture;
 	};
 }
 

@@ -40,6 +40,7 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	
 	//Éú³É¹âÕÕ
 	auto cur_directionLight = std::make_shared <Arc_Engine::DirectionLight>();
+	cur_directionLight->setPosition(glm::vec3(5.0f, 5.0f, 0.0f));
 	cur_directionLight->setAmbient(glm::vec3(0.5f, 0.5f, 0.5f));
 	cur_directionLight->setDiffuse(glm::vec3(0.6f, 0.6f, 0.6f));
 	cur_directionLight->setDirection(glm::vec3(0.5f, 0.8f, 0.0f));
@@ -261,6 +262,7 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	std::shared_ptr<Arc_Engine::ArcRenderer> renderer = inst->renderer();
 	//GLuint program = inst->renderer()->_material->program();
 	GLuint texture = inst->renderer()->texture;
+	GLuint shadowTexture = app->scene()->shadowTexture();
 
 	//bind the shaders
 	glUseProgram(program);
@@ -286,6 +288,20 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glUniform1i(texLocation, 0);
+
+	if (shadowTexture != 0) {
+		GLfloat near_plane = 1.0f, far_plane = 7.5f;
+		glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+		glm::mat4 lightView = glm::lookAt(app->scene()->light()->position(), app->scene()->light()->position() + app->scene()->light()->direction(), glm::vec3(0.0, 1.0, 0.0));
+		glm::mat4 lightSpaceMatrix = lightProjection * lightView;
+		GLint lightSpaceMatrixMatLocation = glGetUniformLocation(program, "lightSpaceMatrix");
+		glUniformMatrix4fv(lightSpaceMatrixMatLocation, 1, GL_FALSE, glm::value_ptr(lightSpaceMatrix));
+
+		GLint shadowMapLocation = glGetUniformLocation(program, "ShadowMap");
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, shadowTexture);
+		glUniform1i(shadowMapLocation, 1);
+	}
 
 	//bind VAO and draw
 	glBindVertexArray(renderer->vao);

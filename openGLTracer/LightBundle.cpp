@@ -3,10 +3,15 @@
 
 namespace Arc_Engine {
 	DirectionLight::DirectionLight():
+		_position(0.0f, 0.0f, 0.0f),
 		_direction(0.0f,0.0f,0.0f),
 		_ambient(0.0f, 0.0f, 0.0f),
 		_diffuse(0.0f, 0.0f, 0.0f)
 	{
+	}
+
+	const glm::vec3& DirectionLight::position() const {
+		return _position;
 	}
 
 	const glm::vec3& DirectionLight::direction() const {
@@ -19,6 +24,10 @@ namespace Arc_Engine {
 
 	const glm::vec3& DirectionLight::diffuse() const {
 		return _diffuse;
+	}
+
+	void DirectionLight::setPosition(const glm::vec3& position) {
+		_position = position;
 	}
 
 	void DirectionLight::setDirection(const glm::vec3& direction) {
