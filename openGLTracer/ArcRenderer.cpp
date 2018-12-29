@@ -26,7 +26,7 @@ namespace Arc_Engine {
 	}
 
 	ArcRenderer::ArcRenderer(std::shared_ptr<ArcMaterial> material, size_t vertexDataSize, GLfloat vertexData[], GLuint texture) :
-		material(material), program(material->program()), drawType(GL_TRIANGLES), drawStart(0), drawCount(6 * 2 * 3), texture(texture)
+		_material(material), program(material->program()), drawType(GL_TRIANGLES), drawStart(0), drawCount(6 * 2 * 3), texture(texture)
 	{
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);

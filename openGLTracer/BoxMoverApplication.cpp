@@ -257,9 +257,9 @@ void BoxMoverApplication::createGameObjects() {
 	scene()->addGameObject(tempGameObject19);
 }
 
-void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app) {
+void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app) {
 	std::shared_ptr<Arc_Engine::ArcRenderer> renderer = inst->renderer();
-	GLuint program = inst->renderer()->material->program();
+	//GLuint program = inst->renderer()->_material->program();
 	GLuint texture = inst->renderer()->texture;
 
 	//bind the shaders

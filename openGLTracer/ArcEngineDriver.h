@@ -16,6 +16,7 @@
 #include "ArcApplication.h"
 #include "ArcTextureLoader.h"
 #include "DriverSetting.h"
+#include "ArcMaterial.h"
 
 #define print Arc_Engine::ArcLogger::log 
 
@@ -38,6 +39,8 @@ GLuint depthMap;
 GLuint simpleDepthShaderProgram;
 GLuint debugDepthShaderProgram;
 
+std::shared_ptr<Arc_Engine::ArcMaterial> diffuseShaderMaterial;
+
 void draw();
 
 void loadModel();
@@ -57,5 +60,7 @@ void OnScroll(GLFWwindow* window, double deltaX, double deltaY);
 void createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap);
 
 void RenderQuad();
+
+void RenderDepthMap(std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
 
 #endif // !__OPENGLTRACER__

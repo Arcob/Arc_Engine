@@ -9,9 +9,10 @@ namespace Arc_Engine {
 		ArcRenderer() = default;
 		ArcRenderer(GLuint shaderProgram, size_t vertexDataSize, GLfloat vertexData[], GLuint texture);
 		ArcRenderer(std::shared_ptr<class ArcMaterial> material, size_t vertexDataSize, GLfloat vertexData[], GLuint texture);
+		
 		~ArcRenderer() = default;
 
-		std::shared_ptr<class ArcMaterial> material;
+		std::shared_ptr<class ArcMaterial> _material;
 		GLuint program;
 		GLuint texture;
 		GLuint vbo;

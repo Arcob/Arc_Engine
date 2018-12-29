@@ -16,8 +16,8 @@ namespace Arc_Engine {
 		_renderFunction = function;
 	}
 
-	void ArcMaterial::callRenderFunction(std::shared_ptr<Arc_Engine::ArcGameObject> gameObject, std::shared_ptr<Arc_Engine::ArcApplication> app) {
-		_renderFunction(gameObject, app);
+	void ArcMaterial::callRenderFunction(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> gameObject, std::shared_ptr<Arc_Engine::ArcApplication> app) {
+		_renderFunction(program, gameObject, app);
 	}
 
 	GLuint ArcMaterial::loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath) {

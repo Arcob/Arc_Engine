@@ -13,7 +13,7 @@ namespace Arc_Engine {
 		static GLuint loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath);
 		const GLuint program();
 		void setRenderFunction(RenderFunction function);
-		void callRenderFunction(std::shared_ptr<Arc_Engine::ArcGameObject> gameObject, std::shared_ptr<Arc_Engine::ArcApplication> app);
+		void callRenderFunction(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> gameObject, std::shared_ptr<Arc_Engine::ArcApplication> app);
 
 	private:
 		GLuint _programHandle;
