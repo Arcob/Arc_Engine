@@ -2,7 +2,7 @@
 #include "common.h"
 
 namespace Arc_Engine {
-
+	
 	class ArcRenderer
 	{
 	public:

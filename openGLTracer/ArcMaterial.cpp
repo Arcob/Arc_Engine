@@ -3,13 +3,21 @@
 namespace Arc_Engine {
 
 	ArcMaterial::ArcMaterial(std::string vertexShaderPath, std::string fragmentShaderPath):
-		_programHandle(loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath))
+		_programHandle(loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath)), _renderFunction(nullptr)
 	{
 		//_programHandle = loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath);
 	}
 
 	const GLuint ArcMaterial::program() {
 		return _programHandle;
+	}
+
+	void ArcMaterial::setRenderFunction(RenderFunction function) {
+		_renderFunction = function;
+	}
+
+	void ArcMaterial::callRenderFunction(std::shared_ptr<Arc_Engine::ArcGameObject> gameObject, std::shared_ptr<Arc_Engine::ArcApplication> app) {
+		_renderFunction(gameObject, app);
 	}
 
 	GLuint ArcMaterial::loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath) {

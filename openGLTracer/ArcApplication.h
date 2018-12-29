@@ -28,5 +28,7 @@ namespace Arc_Engine {
 		std::shared_ptr<class ArcScene> _scene;
 	};
 	
+	typedef void(*RenderFunction)(std::shared_ptr<Arc_Engine::ArcGameObject>, std::shared_ptr<Arc_Engine::ArcApplication>);
+
 }
 

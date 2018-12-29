@@ -23,6 +23,7 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	simpleDepthShaderProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(currentPath + shader_path + depth_vert_shader_path, currentPath + shader_path + depth_frag_shader_path);
 	
 	diffuseShaderMaterial = std::make_shared<Arc_Engine::ArcMaterial>(currentPath + shader_path + normal_vert_shader_path, currentPath + shader_path + normal_frag_shader_path);
+	diffuseShaderMaterial->setRenderFunction(RenderInstance);
 
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + pushable_box_path, &pushableBoxTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + wall_path, &wallTexture);
@@ -256,3 +257,42 @@ void BoxMoverApplication::createGameObjects() {
 	scene()->addGameObject(tempGameObject19);
 }
 
+void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app) {
+	std::shared_ptr<Arc_Engine::ArcRenderer> renderer = inst->renderer();
+	GLuint program = inst->renderer()->material->program();
+	GLuint texture = inst->renderer()->texture;
+
+	//bind the shaders
+	glUseProgram(program);
+
+	GLint cameraMatLocation = glGetUniformLocation(program, "camera");
+	glUniformMatrix4fv(cameraMatLocation, 1, GL_FALSE, glm::value_ptr(app->mainCamera()->matrix()));
+
+	GLint modelMatLocation = glGetUniformLocation(program, "model");
+	glUniformMatrix4fv(modelMatLocation, 1, GL_FALSE, glm::value_ptr(inst->transform().transformMatrix()));
+
+	GLint lightAmbientLoc = glGetUniformLocation(program, "light.ambient");
+	GLint lightDiffuseLoc = glGetUniformLocation(program, "light.diffuse");
+	GLint lightDirLoc = glGetUniformLocation(program, "light.direction");
+
+	auto mainSceneLight = app->scene()->light();
+
+	glUniform3f(lightAmbientLoc, mainSceneLight->ambient().x, mainSceneLight->ambient().y, mainSceneLight->ambient().z);
+	glUniform3f(lightDiffuseLoc, mainSceneLight->diffuse().x, mainSceneLight->diffuse().y, mainSceneLight->diffuse().z);
+	glUniform3f(lightDirLoc, mainSceneLight->direction().x, mainSceneLight->direction().y, mainSceneLight->direction().z); // 方向光源
+
+	// 设置材料光照属性
+	GLint texLocation = glGetUniformLocation(program, "U_MainTexture");
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glUniform1i(texLocation, 0);
+
+	//bind VAO and draw
+	glBindVertexArray(renderer->vao);
+	glDrawArrays(renderer->drawType, renderer->drawStart, renderer->drawCount);
+
+	//unbind everything
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glUseProgram(0);
+}

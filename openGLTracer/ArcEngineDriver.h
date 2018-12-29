@@ -31,7 +31,7 @@ double gScrollY = 0.0;
 GLFWwindow* window;
 Swb_Model* testModel;
 std::vector<GLfloat> tempVertexData;
-std::unique_ptr<Arc_Engine::ArcApplication> app;
+std::shared_ptr<Arc_Engine::ArcApplication> app;
 
 GLuint depthMapFBO;
 GLuint depthMap;
@@ -50,9 +50,9 @@ void treatMouseInput(float secondsElapsed);
 
 void OnScroll(GLFWwindow* window, double deltaX, double deltaY);
 
-void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst);
+//void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst);
 
-void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst, GLuint program, GLuint texture);
+//void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst, GLuint program, GLuint texture);
 
 void createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap);
 

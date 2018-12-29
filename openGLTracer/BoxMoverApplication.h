@@ -3,6 +3,7 @@
 #include "ArcRenderer.h"
 #include "ArcMaterial.h"
 
+void RenderInstance(std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
 
 
 class BoxMoverApplication :
