@@ -13,14 +13,12 @@
 
 
 BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene, GLuint WIDTH, GLuint HEIGHT): ArcApplication(inputScene, WIDTH, HEIGHT),
-	depthMapFBO(0), depthMap(0), pushableBoxTexture(0), wallTexture(0), aimTexture(0), playerTexture(0)
+	depthMap(0), pushableBoxTexture(0), wallTexture(0), aimTexture(0), playerTexture(0)
 {
 	
 	currentPath = Arc_Engine::ArcTools::getCurrentPath();
 	ArcApplication::setName("BoxMoverApplication");
 	//加载资源生成renderer
-	diffuseShaderProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(currentPath + shader_path + normal_vert_shader_path, currentPath + shader_path + normal_frag_shader_path);
-	simpleDepthShaderProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(currentPath + shader_path + depth_vert_shader_path, currentPath + shader_path + depth_frag_shader_path);
 	
 	diffuseShaderMaterial = std::make_shared<Arc_Engine::ArcMaterial>(currentPath + shader_path + normal_vert_shader_path, currentPath + shader_path + normal_frag_shader_path);
 	diffuseShaderMaterial->setRenderFunction(RenderInstance);
@@ -29,9 +27,6 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + wall_path, &wallTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + aim_path, &aimTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + player_path, &playerTexture);
-	
-	Arc_Engine::ArcTextureLoader::createDepthMap(&depthMap); //创建shadow用的depthMap
-	createShadowBuffer(&depthMapFBO, depthMap);
 	
 	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, pushableBoxTexture);
 	wall = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, wallTexture);
@@ -45,20 +40,9 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	cur_directionLight->setDiffuse(glm::vec3(0.6f, 0.6f, 0.6f));
 	cur_directionLight->setDirection(glm::vec3(-0.5f, -0.8f, -0.5f));
 	ArcApplication::scene()->setLight(cur_directionLight);
-
+	ArcApplication::scene()->enableShadow();
 	//生成场景中的物体
 	createGameObjects();
-}
-
-void BoxMoverApplication::createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap) {
-	glGenFramebuffers(1, depthMapFBO);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, *depthMapFBO);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
-	glDrawBuffer(GL_NONE);
-	glReadBuffer(GL_NONE);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
 }
 
 void BoxMoverApplication::createGameObjects() {
@@ -262,7 +246,7 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	std::shared_ptr<Arc_Engine::ArcRenderer> renderer = inst->renderer();
 	//GLuint program = inst->renderer()->_material->program();
 	GLuint texture = inst->renderer()->texture;
-	GLuint shadowTexture = app->scene()->shadowTexture();
+	GLuint shadowTexture = app->scene()->depthMap();
 
 	//bind the shaders
 	glUseProgram(program);

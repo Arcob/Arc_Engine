@@ -41,4 +41,13 @@ namespace Arc_Engine {
 	void DirectionLight::setDiffuse(const glm::vec3& diffuse) {
 		_diffuse = diffuse;
 	}
+
+	glm::mat4 DirectionLight::lightProjection() {
+		GLfloat near_plane = 1.0f, far_plane = 7.5f; // nearplane∫Õfarplaneœ»–¥À¿
+		return glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+	}
+
+	glm::mat4 DirectionLight::lightView() {
+		return glm::lookAt(_position, _position + _direction, glm::vec3(0.0, 1.0, 0.0));
+	}
 }

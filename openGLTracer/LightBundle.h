@@ -15,7 +15,8 @@ namespace Arc_Engine {
 		void setDirection(const glm::vec3& direction);
 		void setAmbient(const glm::vec3& ambient);
 		void setDiffuse(const glm::vec3& diffuse);
-
+		glm::mat4 lightProjection();
+		glm::mat4 lightView();
 
 	private:
 		glm::vec3 _position;

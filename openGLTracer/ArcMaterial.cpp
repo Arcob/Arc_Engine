@@ -1,6 +1,9 @@
 #include "ArcMaterial.h"
+#include "ArcTools.h"
 
 namespace Arc_Engine {
+
+	GLuint ArcMaterial::_shadowProgram = -1; //GLunit不包含-1，此处实际是最大值
 
 	ArcMaterial::ArcMaterial(std::string vertexShaderPath, std::string fragmentShaderPath):
 		_programHandle(loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath)), _renderFunction(nullptr)
@@ -50,4 +53,11 @@ namespace Arc_Engine {
 		return result;
 	}
 
+	GLuint ArcMaterial::loadShadowProgram() {
+		if (_shadowProgram == -1) {
+			std::string currentPath = ArcTools::getCurrentPath();
+			_shadowProgram = loadShaderAndCreateProgram(currentPath + shader_path + depth_vert_shader_path, currentPath + shader_path + depth_frag_shader_path);
+		}
+		return _shadowProgram;
+	}
 }

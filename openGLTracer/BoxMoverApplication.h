@@ -12,7 +12,6 @@ class BoxMoverApplication :
 public:
 	BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcScene> inputScene, GLuint WIDTH, GLuint HEIGHT);
 	void createGameObjects();
-	void createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap);
 	~BoxMoverApplication() = default;
 
 private:
@@ -28,10 +27,6 @@ private:
 	const std::string aim_path = "\\resources\\aim.jpg";
 	const std::string player_path = "\\resources\\PandaPlayer.jpg";
 	const std::string model_path = "\\resources\\bunny.obj";
-
-	GLuint diffuseShaderProgram;
-	GLuint simpleDepthShaderProgram;
-	GLuint depthMapFBO;
 
 	std::shared_ptr<Arc_Engine::ArcMaterial> diffuseShaderMaterial;
 
