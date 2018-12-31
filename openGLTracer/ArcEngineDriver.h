@@ -67,5 +67,4 @@ void createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap);
 void RenderQuad();
 
 void RenderDepthMap(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
-
 #endif // !__OPENGLTRACER__
