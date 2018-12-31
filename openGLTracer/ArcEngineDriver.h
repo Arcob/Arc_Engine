@@ -20,9 +20,6 @@
 
 #define print Arc_Engine::ArcLogger::log 
 
-const std::string debug_depth_vert_shader_path = "\\shadowShader\\shadow_vert.vert";
-const std::string debug_depth_frag_shader_path = "\\shadowShader\\shadow_frag.frag";
-
 double gScrollY = 0.0;
 GLFWwindow* window;
 std::shared_ptr<Arc_Engine::ArcApplication> app;
