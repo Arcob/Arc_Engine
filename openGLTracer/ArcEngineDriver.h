@@ -28,6 +28,9 @@ const std::string depth_frag_shader_path = "\\shadowShader\\depth_frag.frag";
 const std::string debug_depth_vert_shader_path = "\\shadowShader\\shadow_vert.vert";
 const std::string debug_depth_frag_shader_path = "\\shadowShader\\shadow_frag.frag";
 
+const std::string aim_path = "\\resources\\aim.jpg";
+GLuint aimTexture;
+
 double gScrollY = 0.0;
 GLFWwindow* window;
 Swb_Model* testModel;
@@ -41,6 +44,7 @@ GLuint debugDepthShaderProgram;
 glm::mat4 lightSpaceMatrix;
 
 std::shared_ptr<Arc_Engine::ArcMaterial> depthMaterial;
+std::shared_ptr<Arc_Engine::ArcMaterial> shaderDebugMaterial;
 
 void draw();
 

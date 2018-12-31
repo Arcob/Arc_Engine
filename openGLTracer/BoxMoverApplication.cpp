@@ -43,7 +43,7 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	cur_directionLight->setPosition(glm::vec3(5.0f, 5.0f, 0.0f));
 	cur_directionLight->setAmbient(glm::vec3(0.5f, 0.5f, 0.5f));
 	cur_directionLight->setDiffuse(glm::vec3(0.6f, 0.6f, 0.6f));
-	cur_directionLight->setDirection(glm::vec3(0.5f, 0.8f, 0.0f));
+	cur_directionLight->setDirection(glm::vec3(-0.5f, -0.8f, -0.5f));
 	ArcApplication::scene()->setLight(cur_directionLight);
 
 	//生成场景中的物体
