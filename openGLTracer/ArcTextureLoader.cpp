@@ -2,7 +2,7 @@
 #include "FreeImage.h"
 
 namespace Arc_Engine {
-	void ArcTextureLoader::loadImageToTexture(std::string texturePath, GLuint* tempTexture) {
+	void ArcTextureLoader::loadImageToTexture(const std::string& texturePath, GLuint* tempTexture) {
 		FREE_IMAGE_FORMAT fifmt = FreeImage_GetFileType(texturePath.c_str(), 0);
 		if (fifmt == FIF_UNKNOWN) {
 			fifmt = FreeImage_GetFIFFromFilename(texturePath.c_str());

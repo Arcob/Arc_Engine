@@ -14,7 +14,7 @@ namespace Arc_Engine {
 	std::shared_ptr<ArcGameObject> const ArcBehaviour::gameObject() const{
 		return _gameObject;
 	}
-
+	
 	void ArcBehaviour::Awake()
 	{
 

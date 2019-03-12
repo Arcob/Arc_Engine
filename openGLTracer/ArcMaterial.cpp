@@ -5,7 +5,7 @@ namespace Arc_Engine {
 
 	GLuint ArcMaterial::_shadowProgram = -1; //GLunit不包含-1，此处实际是最大值
 
-	ArcMaterial::ArcMaterial(std::string vertexShaderPath, std::string fragmentShaderPath):
+	ArcMaterial::ArcMaterial(const std::string& vertexShaderPath, const std::string& fragmentShaderPath):
 		_programHandle(loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath)), _renderFunction(nullptr)
 	{
 		//_programHandle = loadShaderAndCreateProgram(vertexShaderPath, fragmentShaderPath);
@@ -23,7 +23,7 @@ namespace Arc_Engine {
 		_renderFunction(program, gameObject, app);
 	}
 
-	GLuint ArcMaterial::loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath) {
+	GLuint ArcMaterial::loadShaderAndCreateProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath) {
 		std::ifstream v(vertexShaderPath);
 		std::string vertBuffer((std::istreambuf_iterator<char>(v)), std::istreambuf_iterator<char>());
 		std::ifstream f(fragmentShaderPath);

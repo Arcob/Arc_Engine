@@ -13,8 +13,8 @@ namespace Arc_Engine {
 	{
 	public:
 		
-		ArcMaterial::ArcMaterial(std::string vertexShaderPath, std::string fragmentShaderPath);
-		static GLuint loadShaderAndCreateProgram(std::string vertexShaderPath, std::string fragmentShaderPath);
+		ArcMaterial::ArcMaterial(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
+		static GLuint loadShaderAndCreateProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
 		static GLuint loadShadowProgram();
 		const GLuint program();
 		void setRenderFunction(RenderFunction function);

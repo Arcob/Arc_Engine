@@ -21,7 +21,7 @@ namespace Arc_Engine {
 		const ArcTransform transform() const;
 		std::shared_ptr<ArcTransform> const transformPtr();
 		void setTransfrom(std::shared_ptr<ArcTransform> transfrom);
-		void setName(std::string name);
+		void setName(const std::string& name);
 		const std::string name() const;
 		void setRenderer(std::shared_ptr<ArcRenderer> renderer);
 		const std::shared_ptr<ArcRenderer> renderer() const;

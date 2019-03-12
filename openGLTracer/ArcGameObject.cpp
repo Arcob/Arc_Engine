@@ -42,7 +42,7 @@ namespace Arc_Engine {
 		_transform = transform;
 	}
 
-	void ArcGameObject::setName(std::string name) {
+	void ArcGameObject::setName(const std::string& name) {
 		_name = name;
 	}
 

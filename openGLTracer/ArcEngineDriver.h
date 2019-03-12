@@ -20,7 +20,7 @@
 
 #define print Arc_Engine::ArcLogger::log 
 
-double gScrollY = 0.0;
+double gScrollY;
 GLFWwindow* window;
 std::shared_ptr<Arc_Engine::ArcApplication> app;
 
