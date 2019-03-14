@@ -18,6 +18,10 @@ namespace Arc_Engine {
 		return _postEffectMapFBO;
 	}
 
+	const GLuint ArcScene::postEffectMap() const {
+		return _postEffectMap;
+	}
+
 	void ArcScene::setLight(std::shared_ptr<Arc_Engine::DirectionLight> light) {
 		_light = light;
 	}

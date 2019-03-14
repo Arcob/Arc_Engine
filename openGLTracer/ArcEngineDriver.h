@@ -24,7 +24,34 @@ double gScrollY;
 GLFWwindow* window;
 std::shared_ptr<Arc_Engine::ArcApplication> app;
 
+#pragma region Unclear
+
+std::shared_ptr<Arc_Engine::ArcRenderer> screenQuadRenderer;
+
+GLfloat screenVertices[20] =
+{
+	-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+	1.0f,  -1.0f, 0.0f, 1.0f, 0.0f,
+	1.0f,  1.0f,  0.0f, 1.0f, 1.0f,
+	-1.0f, 1.0f,  0.0f, 0.0f, 1.0f
+};
+
+std::shared_ptr<Arc_Engine::ArcMaterial> postEffectMaterial;
+
+const std::string depth_vert_shader_path = "\\shadowShader\\depth_vert.vert";
+const std::string depth_frag_shader_path = "\\shadowShader\\depth_frag.frag";
+
 GLuint simpleDepthShaderProgram;
+
+void RenderPostEffectMap(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
+
+void setScreenQuadRenderer();
+
+void renderToScreenQuad();
+
+void renderScreenQuad(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
+
+#pragma endregion
 
 void draw();
 
@@ -39,4 +66,5 @@ void OnScroll(GLFWwindow* window, double deltaX, double deltaY);
 void renderDepthToFBO(GLuint fbo);
 
 void RenderDepthMap(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);
+
 #endif // !__OPENGLTRACER__

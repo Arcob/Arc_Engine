@@ -14,6 +14,7 @@ namespace Arc_Engine {
 		void setLight(std::shared_ptr<Arc_Engine::DirectionLight> light); //之后把light改成基类？
 		const GLuint depthMap() const;
 		const GLuint depthMapFBO() const;
+		const GLuint postEffectMap() const;
 		const GLuint postEffectFBO() const;
 		void addGameObject(std::shared_ptr<Arc_Engine::ArcGameObject> gameObject);
 		void enableShadow();//开启阴影，计算出_depthMapFBO和_depthMap

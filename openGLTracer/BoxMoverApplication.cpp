@@ -27,11 +27,17 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + wall_path, &wallTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + aim_path, &aimTexture);
 	Arc_Engine::ArcTextureLoader::loadImageToTexture(currentPath + player_path, &playerTexture);
+
+	std::vector<Arc_Engine::layoutStruct> cubeLayoutVector;
+	cubeLayoutVector.reserve(3);
+	cubeLayoutVector.push_back(Arc_Engine::layoutStruct(0, 3, 8, 0, sizeof(GLfloat)));
+	cubeLayoutVector.push_back(Arc_Engine::layoutStruct(1, 2, 8, 3, sizeof(GLfloat)));
+	cubeLayoutVector.push_back(Arc_Engine::layoutStruct(2, 3, 8, 5, sizeof(GLfloat)));
 	
-	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, pushableBoxTexture);
-	wall = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, wallTexture);
-	aim = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, aimTexture);
-	player = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, playerTexture);
+	woodenCrate = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, pushableBoxTexture, cubeLayoutVector);
+	wall = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, wallTexture, cubeLayoutVector);
+	aim = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, aimTexture, cubeLayoutVector);
+	player = std::make_shared<Arc_Engine::ArcRenderer>(diffuseShaderMaterial, sizeof(vertexData), vertexData, playerTexture, cubeLayoutVector);
 	
 	//…˙≥…π‚’’
 	auto cur_directionLight = std::make_shared <Arc_Engine::DirectionLight>();
