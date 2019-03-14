@@ -3,8 +3,10 @@
 #include "common.h"
 #include "BoxMoverApplication.h"
 #define Application BoxMoverApplication
-#define EnableTest true
-#define EnableShadow true
+
+const bool ENABLE_TEST = true;
+const bool ENABLE_SHADOW = true;
+const bool ENABLE_POST_EFFECT = false;
 
 const GLuint WIDTH = 1024, HEIGHT = 1024;
 

@@ -10,6 +10,10 @@ namespace Arc_Engine {
 		static void createDepthMap(GLuint* tempTexture); //默认的width和height都是1024
 
 		static void createDepthMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
+
+		static void createPostEffectMap(GLuint* tempTexture); //默认的width和height都是1024
+
+		static void createPostEffectMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
 	};
 	
 }

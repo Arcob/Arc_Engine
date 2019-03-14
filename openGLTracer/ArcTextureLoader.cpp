@@ -1,5 +1,6 @@
 #include "ArcTextureLoader.h"
 #include "FreeImage.h"
+#include "DriverSetting.h"
 
 namespace Arc_Engine {
 	void ArcTextureLoader::loadImageToTexture(const std::string& texturePath, GLuint* tempTexture) {
@@ -78,6 +79,20 @@ namespace Arc_Engine {
 	}
 
 	void ArcTextureLoader::createDepthMap(GLuint* depthMap) {
-		createDepthMap(1024, 1024, depthMap);
+		createDepthMap(WIDTH, HEIGHT, depthMap);
+	}
+	
+	void ArcTextureLoader::createPostEffectMap(GLuint postEffectWidth, GLuint postEffectHeight, GLuint* postEffectMap) {
+		glGenTextures(1, postEffectMap);
+		glBindTexture(GL_TEXTURE_2D, *postEffectMap);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, postEffectWidth, postEffectHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+	}
+
+	void ArcTextureLoader::createPostEffectMap(GLuint* postEffectMap) {
+		createPostEffectMap(WIDTH, HEIGHT, postEffectMap);
 	}
 }

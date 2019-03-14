@@ -41,6 +41,7 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	cur_directionLight->setDirection(glm::vec3(-0.5f, -0.8f, -0.5f));
 	ArcApplication::scene()->setLight(cur_directionLight);
 	ArcApplication::scene()->enableShadow();
+	ArcApplication::scene()->enablePostEffect();
 	//生成场景中的物体
 	createGameObjects();
 }
