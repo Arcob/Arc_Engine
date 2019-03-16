@@ -9,6 +9,7 @@ namespace Arc_Engine {
 	public:
 		static std::string getCurrentPath();
 		static void drawDebugQuad(GLuint texture);
+		static void drawPostEffectQuad(GLuint texture);
 		static void RenderQuad();
 
 	private:

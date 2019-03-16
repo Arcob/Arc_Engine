@@ -41,6 +41,9 @@ std::shared_ptr<Arc_Engine::ArcMaterial> postEffectMaterial;
 const std::string depth_vert_shader_path = "\\shadowShader\\depth_vert.vert";
 const std::string depth_frag_shader_path = "\\shadowShader\\depth_frag.frag";
 
+const std::string quad_vert_shader_path = "\\QuadShader\\quad_vert.vert";
+const std::string quad_frag_shader_path = "\\QuadShader\\quad_frag.frag";
+
 GLuint simpleDepthShaderProgram;
 
 void RenderPostEffectMap(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> inst, std::shared_ptr<Arc_Engine::ArcApplication> app);

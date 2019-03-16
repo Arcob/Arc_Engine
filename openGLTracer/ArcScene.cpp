@@ -53,6 +53,8 @@ namespace Arc_Engine {
 		glReadBuffer(GL_NONE);
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
+
+
 	
 	void ArcScene::createPostEffectBuffer(GLuint* postEffectMapFBO, GLuint postEffectMap) {
 		glGenFramebuffers(1, postEffectMapFBO);
@@ -60,5 +62,14 @@ namespace Arc_Engine {
 
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, postEffectMap, 0);
 
+		//创建渲染缓冲对象存储深度信息
+		GLuint rbo; // render buffer object
+		glGenRenderbuffers(1, &rbo);
+		glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1024, 1024);
+		glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 }

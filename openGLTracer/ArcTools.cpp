@@ -8,6 +8,9 @@ namespace Arc_Engine {
 	std::string ArcTools::debug_depth_vert_shader_path = "\\shadowShader\\shadow_vert.vert";
 	std::string ArcTools::debug_depth_frag_shader_path = "\\shadowShader\\shadow_frag.frag";
 
+	const std::string quad_vert_shader_path = "\\QuadShader\\quad_vert.vert";
+	const std::string quad_frag_shader_path = "\\QuadShader\\quad_frag.frag";
+
 	std::string ArcTools::getCurrentPath() {
 		if (_currentPath.compare("") == 0) {
 			char buf[80];
@@ -22,6 +25,22 @@ namespace Arc_Engine {
 	void ArcTools::drawDebugQuad(GLuint texture) {
 		if (debugDepthShaderProgram == -1) {
 			debugDepthShaderProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(getCurrentPath() + shader_path + debug_depth_vert_shader_path, getCurrentPath() + shader_path + debug_depth_frag_shader_path);
+		}
+		glViewport(0, 0, WIDTH, HEIGHT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glUseProgram(debugDepthShaderProgram);
+		glUniform1f(glGetUniformLocation(debugDepthShaderProgram, "near_plane"), 1.0f);
+		glUniform1f(glGetUniformLocation(debugDepthShaderProgram, "far_plane"), 7.5f);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		RenderQuad();
+		glUseProgram(0);
+	}
+
+	void ArcTools::drawPostEffectQuad(GLuint texture) {
+		if (debugDepthShaderProgram == -1) {
+			debugDepthShaderProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(getCurrentPath() + shader_path + quad_vert_shader_path, getCurrentPath() + shader_path + quad_frag_shader_path);
 		}
 		glViewport(0, 0, WIDTH, HEIGHT);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

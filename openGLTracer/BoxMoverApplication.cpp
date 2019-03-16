@@ -278,7 +278,7 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	GLint texLocation = glGetUniformLocation(program, "U_MainTexture");
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glUniform1i(texLocation, 0);
+	glUniform1i(texLocation, 0); 
 
 	if (shadowTexture != 0) {
 		GLfloat near_plane = 1.0f, far_plane = 7.5f;

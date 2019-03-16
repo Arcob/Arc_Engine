@@ -6,7 +6,7 @@
 
 const bool ENABLE_TEST = true;
 const bool ENABLE_SHADOW = true;
-const bool ENABLE_POST_EFFECT = false;
+const bool ENABLE_POST_EFFECT = true;
 
 const GLuint WIDTH = 1024, HEIGHT = 1024;
 
