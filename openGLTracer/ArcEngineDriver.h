@@ -26,6 +26,8 @@ std::shared_ptr<Arc_Engine::ArcApplication> app;
 
 #pragma region Unclear
 
+GLuint gBufferMap;
+
 std::shared_ptr<Arc_Engine::ArcRenderer> screenQuadRenderer;
 
 GLfloat screenVertices[20] =

@@ -93,6 +93,19 @@ namespace Arc_Engine {
 	}
 
 	void ArcTextureLoader::createPostEffectMap(GLuint* postEffectMap) {
-		createPostEffectMap(WIDTH, HEIGHT, postEffectMap);
+		createPostEffectMap(WIDTH * ANTI_AILASING_MULTY_TIME, HEIGHT * ANTI_AILASING_MULTY_TIME, postEffectMap);
+	}
+
+	void ArcTextureLoader::createGBufferMap(GLuint width, GLuint height, GLuint* tempTexture) {
+		glGenTextures(1, tempTexture);
+		glBindTexture(GL_TEXTURE_2D, *tempTexture);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+	void ArcTextureLoader::createGBufferMap(GLuint* tempTexture) {
+		createGBufferMap(WIDTH * ANTI_AILASING_MULTY_TIME, HEIGHT * ANTI_AILASING_MULTY_TIME, tempTexture);
 	}
 }

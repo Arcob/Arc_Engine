@@ -102,6 +102,9 @@
     <ClInclude Include="ArcMaterial.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SSAOToolKit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Swb_MeshLoader.cpp">
@@ -177,6 +180,9 @@
       <Filter>源文件\Mine</Filter>
     </ClCompile>
     <ClCompile Include="ArcMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SSAOToolKit.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

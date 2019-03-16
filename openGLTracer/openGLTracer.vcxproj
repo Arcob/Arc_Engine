@@ -172,6 +172,7 @@
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PushableBox.h" />
+    <ClInclude Include="SSAOToolKit.h" />
     <ClInclude Include="Swb_Model.h" />
     <ClInclude Include="ArcEngineDriver.h" />
     <ClInclude Include="Swb_MeshLoader.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PushableBox.cpp" />
+    <ClCompile Include="SSAOToolKit.cpp" />
     <ClCompile Include="Swb_Model.cpp" />
     <ClCompile Include="ArcEngineDriver.cpp" />
     <ClCompile Include="Swb_MeshLoader.cpp" />

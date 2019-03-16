@@ -1,4 +1,5 @@
 #include "ArcScene.h"
+#include "DriverSetting.h"
 
 
 namespace Arc_Engine {
@@ -20,6 +21,19 @@ namespace Arc_Engine {
 
 	const GLuint ArcScene::postEffectMap() const {
 		return _postEffectMap;
+	}
+
+	const GLuint ArcScene::gBufferMap() const {
+		return _gBufferMap;
+	}
+
+	const GLuint ArcScene::gBufferMapFBO() const {
+		return _gBufferMapFBO;
+	}
+
+	void ArcScene::enableGBuffer() {
+		Arc_Engine::ArcTextureLoader::createGBufferMap(&_gBufferMap);
+		createGBuffer(&_gBufferMapFBO, _gBufferMap);
 	}
 
 	void ArcScene::setLight(std::shared_ptr<Arc_Engine::DirectionLight> light) {
@@ -54,22 +68,37 @@ namespace Arc_Engine {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
+	void ArcScene::createGBuffer(GLuint* gBufferFBO, GLuint gBufferMap) {
+		glGenFramebuffers(1, gBufferFBO);
+		glBindFramebuffer(GL_FRAMEBUFFER, *gBufferFBO);
 
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gBufferMap, 0);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
 	
 	void ArcScene::createPostEffectBuffer(GLuint* postEffectMapFBO, GLuint postEffectMap) {
 		glGenFramebuffers(1, postEffectMapFBO);
 		glBindFramebuffer(GL_FRAMEBUFFER, *postEffectMapFBO);
 
+		//color
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, postEffectMap, 0);
 
 		//创建渲染缓冲对象存储深度信息
 		GLuint rbo; // render buffer object
 		glGenRenderbuffers(1, &rbo);
 		glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1024, 1024);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, WIDTH * ANTI_AILASING_MULTY_TIME, HEIGHT * ANTI_AILASING_MULTY_TIME);
 		glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+
+		//gbuffer
+		Arc_Engine::ArcTextureLoader::createGBufferMap(&_gBufferMap);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, _gBufferMap, 0);
+
+		GLenum drawBuffers[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1};
+		glDrawBuffers(2, drawBuffers);
+
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 }

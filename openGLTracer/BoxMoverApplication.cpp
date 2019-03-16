@@ -47,6 +47,7 @@ BoxMoverApplication::BoxMoverApplication(std::shared_ptr<class Arc_Engine::ArcSc
 	cur_directionLight->setDirection(glm::vec3(-0.5f, -0.8f, -0.5f));
 	ArcApplication::scene()->setLight(cur_directionLight);
 	ArcApplication::scene()->enableShadow();
+	//ArcApplication::scene()->enableGBuffer();
 	ArcApplication::scene()->enablePostEffect();
 	//生成场景中的物体
 	createGameObjects();
@@ -254,6 +255,7 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	//GLuint program = inst->renderer()->_material->program();
 	GLuint texture = inst->renderer()->texture;
 	GLuint shadowTexture = app->scene()->depthMap();
+	GLuint gbufferMapTexture = app->scene()->gBufferMap();
 
 	//bind the shaders
 	glUseProgram(program);
@@ -278,7 +280,7 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	GLint texLocation = glGetUniformLocation(program, "U_MainTexture");
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glUniform1i(texLocation, 0); 
+	glUniform1i(texLocation, 0);
 
 	if (shadowTexture != 0) {
 		GLfloat near_plane = 1.0f, far_plane = 7.5f;
@@ -294,6 +296,12 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 		glUniform1i(shadowMapLocation, 1);
 	}
 
+	/*GLint GBufferMapLocation = glGetUniformLocation(program, "GBufferMap");
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, gbufferMapTexture);
+	glUniform1i(GBufferMapLocation, 2);*/
+	//glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gbufferMapTexture, 0);
+	//glBindFramebuffer(GL_FRAMEBUFFER, app->scene()->gBufferMapFBO());
 	//bind VAO and draw
 	glBindVertexArray(renderer->vao);
 	glDrawArrays(renderer->drawType, renderer->drawStart, renderer->drawCount);
@@ -301,5 +309,6 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	//unbind everything
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glUseProgram(0);
 }

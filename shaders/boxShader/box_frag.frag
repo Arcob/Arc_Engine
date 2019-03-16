@@ -3,12 +3,18 @@
 uniform sampler2D U_MainTexture;
 uniform sampler2D ShadowMap;
 
+//uniform sampler2D GBufferMap;
+
+
 in vec3 FragPos;
 in vec2 TexCoord;
 in vec3 FragNormal;
 in vec4 FragPosLightSpace;
 
-out vec4 finalColor;
+
+layout(location = 0) out vec4 finalColor;
+layout(location = 1) out vec4 GBufferMap;
+
 
 // 光源属性结构体
 struct LightAttr
@@ -18,6 +24,8 @@ struct LightAttr
 	vec3 diffuse;
 };
 
+const float NEAR = 0.03; // 投影矩阵的近平面
+const float FAR = 20; // 投影矩阵的远平面
 uniform LightAttr light;
 uniform vec3 viewPos;
 
@@ -52,6 +60,12 @@ float ShadowCalculation(vec4 fragPosLightSpace, float bias)
     return shadow;
 }
 
+float LinearizeDepth(float depth)
+{
+    float z = depth * 2.0 - 1.0; // 回到NDC
+    return (2.0 * NEAR * FAR) / (FAR + NEAR - z * (FAR - NEAR));    
+}
+
 void main() {
 	vec3	ambient = light.ambient;
     float bias = max(0.0005 * (1.0 - dot(FragNormal, light.direction)), 0.00005);
@@ -63,11 +77,12 @@ void main() {
 	vec3	normal = normalize(FragNormal);
 	float	diffFactor = max(dot(lightDir, normal), 0.0);
 	vec3	diffuse = diffFactor * light.diffuse;
-
+    GBufferMap = vec4(vec3(normal),1);
 	vec4 albedo = texture(U_MainTexture, TexCoord);
 
 	vec3	result = ambient + ((1.0 - shadow) * diffuse);
-	finalColor	= vec4(result , 1.0f) * albedo;
+	finalColor	= vec4(result , LinearizeDepth(gl_FragCoord.z)) * albedo; //gl_FragCoord.z是片元的深度信息，将深度信息写入到颜色的alpha通道里
+    //finalColor	= vec4(vec3(gl_FragCoord.z),1.0f);
 
 }
 

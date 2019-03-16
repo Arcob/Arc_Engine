@@ -10,6 +10,8 @@ layout(location = 0) in vec3 vert;
 layout(location = 1) in vec2 vertTexCoord;
 layout(location = 2) in vec3 normal;
 
+//layout(location = 3) out vec4 GBufferMap;
+
 out vec3 FragPos;
 out vec2 TexCoord;
 out vec3 FragNormal;

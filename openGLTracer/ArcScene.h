@@ -16,9 +16,13 @@ namespace Arc_Engine {
 		const GLuint depthMapFBO() const;
 		const GLuint postEffectMap() const;
 		const GLuint postEffectFBO() const;
+		const GLuint gBufferMap() const;
+		const GLuint gBufferMapFBO() const;
 		void addGameObject(std::shared_ptr<Arc_Engine::ArcGameObject> gameObject);
 		void enableShadow();//开启阴影，计算出_depthMapFBO和_depthMap
 		void enablePostEffect();//开启后处理，计算出_postEffectMapFBO和_postEffectMap
+		void enableGBuffer();//开启gbuffer，计算出_gBufferMap和_gBufferMapFBO
+		void createGBuffer(GLuint* gBufferFBO, GLuint gBufferMap);
 		void createShadowBuffer(GLuint* depthMapFBO, GLuint depthMap);
 		void createPostEffectBuffer(GLuint* postEffectFBO, GLuint postEffectMap);
 
@@ -30,6 +34,8 @@ namespace Arc_Engine {
 		GLuint _depthMap;
 		GLuint _postEffectMapFBO;
 		GLuint _postEffectMap;
+		GLuint _gBufferMap;
+		GLuint _gBufferMapFBO;
 	};
 }
 
