@@ -6,6 +6,7 @@ in vec2 TexCoords;
 uniform sampler2D screenTexture;
 uniform sampler2D gbufferTexture;
 uniform sampler2D texNoise;
+uniform sampler2D positionTexture;
 
 uniform vec3 samples[64];
  
@@ -22,7 +23,7 @@ void main()
 { 
     
     // Get input for SSAO algorithm
-    vec3 fragPos = texture(screenTexture, TexCoords).xyz;
+    vec3 fragPos = texture(positionTexture, TexCoords).xyz;
     vec3 normal = texture(gbufferTexture, TexCoords).rgb;
     vec3 randomVec = texture(texNoise, TexCoords * noiseScale).xyz;
     // Create TBN change-of-basis matrix: from tangent-space to view-space
@@ -44,16 +45,18 @@ void main()
         offset.xyz = offset.xyz * 0.5 + 0.5; // transform to range 0.0 - 1.0
         
         // get sample depth
-        float sampleDepth = -texture(screenTexture, offset.xy).w; // Get depth value of kernel sample
+        float sampleDepth = -texture(positionTexture, offset.xy).w; // Get depth value of kernel sample
         
         // range check & accumulate
-        float rangeCheck = smoothstep(0.0, 1.0, radius / abs(fragPos.z - sampleDepth ));
-        occlusion += (sampleDepth >= sample.z ? 1.0 : 0.0) * rangeCheck;           
+        //float rangeCheck = smoothstep(0.0, 1.0, radius / abs(fragPos.z - sampleDepth ));
+        //occlusion += (sampleDepth >= sample.z ? 1.0 : 0.0) * rangeCheck;     
+        occlusion += (sampleDepth >= sample.z ? 1.0 : 0.0);      
     }
-    occlusion = 1.0 - (occlusion / kernelSize);
+    occlusion = (occlusion / kernelSize);
     
     //FragColor = vec4(vec3(occlusion),1) ;
-    FragColor = texture(screenTexture, TexCoords);
+    //FragColor = vec4(vec3(texture(positionTexture, TexCoords).w),1) ;
+    FragColor = texture(screenTexture, TexCoords) - vec4(vec3(occlusion),1);
 }
 
 /*void main()

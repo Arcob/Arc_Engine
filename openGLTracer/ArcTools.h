@@ -9,7 +9,7 @@ namespace Arc_Engine {
 	public:
 		static std::string getCurrentPath();
 		static void drawDebugQuad(GLuint texture);
-		static void drawPostEffectQuad(GLuint texture, GLuint gbuffer, const glm::mat4 proj);
+		static void drawPostEffectQuad(GLuint texture, GLuint gbuffer, GLuint positionMap, const glm::mat4 proj);
 		static GLuint generateSSAONoiceTextures();
 		static GLfloat lerp(GLfloat a, GLfloat b, GLfloat f);
 		static void RenderQuad();
@@ -25,7 +25,8 @@ namespace Arc_Engine {
 		static GLuint PostEffectProgram;
 		static GLuint noiseTexture;
 		static GLuint g_buffer;
-
+		
+		static GLfloat sampleArray[64 * 3];
 	};
 }
 

@@ -14,7 +14,7 @@ in vec4 FragPosLightSpace;
 
 layout(location = 0) out vec4 finalColor;
 layout(location = 1) out vec4 GBufferMap;
-
+layout(location = 2) out vec4 positionMap;
 
 // 光源属性结构体
 struct LightAttr
@@ -26,6 +26,9 @@ struct LightAttr
 
 const float NEAR = 0.03; // 投影矩阵的近平面
 const float FAR = 20; // 投影矩阵的远平面
+
+//const float NEAR = 0.3; // 投影矩阵的近平面
+//const float FAR = 100; // 投影矩阵的远平面
 uniform LightAttr light;
 uniform vec3 viewPos;
 
@@ -77,11 +80,12 @@ void main() {
 	vec3	normal = normalize(FragNormal);
 	float	diffFactor = max(dot(lightDir, normal), 0.0);
 	vec3	diffuse = diffFactor * light.diffuse;
-    GBufferMap = vec4(vec3(normal),1);
+    GBufferMap = vec4(normal,1);
+    positionMap = vec4(FragPos,  LinearizeDepth(gl_FragCoord.z));
 	vec4 albedo = texture(U_MainTexture, TexCoord);
 
 	vec3	result = ambient + ((1.0 - shadow) * diffuse);
-	finalColor	= vec4(result , LinearizeDepth(gl_FragCoord.z)) * albedo; //gl_FragCoord.z是片元的深度信息，将深度信息写入到颜色的alpha通道里
+	finalColor	= vec4(result ,1) * albedo; //gl_FragCoord.z是片元的深度信息，将深度信息写入到颜色的alpha通道里
     //finalColor	= vec4(vec3(gl_FragCoord.z),1.0f);
 
 }

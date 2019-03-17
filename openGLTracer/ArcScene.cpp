@@ -31,6 +31,10 @@ namespace Arc_Engine {
 		return _gBufferMapFBO;
 	}
 
+	const GLuint ArcScene::gPositionMap() const {
+		return _positionMap;
+	}
+
 	void ArcScene::enableGBuffer() {
 		Arc_Engine::ArcTextureLoader::createGBufferMap(&_gBufferMap);
 		createGBuffer(&_gBufferMapFBO, _gBufferMap);
@@ -96,8 +100,11 @@ namespace Arc_Engine {
 		Arc_Engine::ArcTextureLoader::createGBufferMap(&_gBufferMap);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, _gBufferMap, 0);
 
-		GLenum drawBuffers[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1};
-		glDrawBuffers(2, drawBuffers);
+		Arc_Engine::ArcTextureLoader::createGBufferMap(&_positionMap);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, _positionMap, 0);
+
+		GLenum drawBuffers[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
+		glDrawBuffers(3, drawBuffers);
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}

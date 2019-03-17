@@ -11,6 +11,7 @@ namespace Arc_Engine {
 	GLuint ArcTools::noiseTexture = 0;
 	GLuint ArcTools::g_buffer = 0;
 	std::vector<glm::vec3> ArcTools::ssaoNoise;
+	GLfloat ArcTools::sampleArray[64 * 3];
 
 	std::string ArcTools::debug_depth_vert_shader_path = "\\shadowShader\\shadow_vert.vert";
 	std::string ArcTools::debug_depth_frag_shader_path = "\\shadowShader\\shadow_frag.frag";
@@ -45,7 +46,7 @@ namespace Arc_Engine {
 		glUseProgram(0);
 	}
 	
-	void ArcTools::drawPostEffectQuad(GLuint texture, GLuint gbuffer, const glm::mat4 proj) {
+	void ArcTools::drawPostEffectQuad(GLuint texture, GLuint gbuffer, GLuint positionMap, const glm::mat4 proj) {
 		if (PostEffectProgram == -1) {
 			PostEffectProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(getCurrentPath() + shader_path + quad_vert_shader_path, getCurrentPath() + shader_path + quad_frag_shader_path);
 		}
@@ -65,12 +66,21 @@ namespace Arc_Engine {
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, gbuffer);
 		glUniform1i(texLocation1, 1);
-
-		generateSSAONoiceTextures();
+		
+		//generateSSAONoiceTextures();
 		GLint texLocation2 = glGetUniformLocation(PostEffectProgram, "texNoise");
 		glActiveTexture(GL_TEXTURE2);
 		glBindTexture(GL_TEXTURE_2D, noiseTexture);
 		glUniform1i(texLocation2, 2);
+
+		GLint texLocation3 = glGetUniformLocation(PostEffectProgram, "positionTexture");
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_2D, positionMap);
+		glUniform1i(texLocation3, 3);
+
+		GLint array = glGetUniformLocation(PostEffectProgram, "samples");
+		glUniform3fv(array, 64 * 3, sampleArray);
+		//glUniformMatrix3fv()
 
 		GLint modelMatLocation = glGetUniformLocation(PostEffectProgram, "projection");
 		glUniformMatrix4fv(modelMatLocation, 1, GL_FALSE, glm::value_ptr(proj));
@@ -137,6 +147,17 @@ namespace Arc_Engine {
 				randomFloats(generator) * 2.0 - 1.0,
 				0.0f);
 			ssaoNoise.push_back(noise);
+		}
+
+		for (int i = 0; i < 64 * 3; i++) {
+			if (i % 3 == 0) {
+				sampleArray[i] = ssaoKernel[i / 3].x;
+			}else if (i % 3 == 1) {
+				sampleArray[i] = ssaoKernel[i / 3].y;
+			}
+			else if (i % 3 == 2) {
+				sampleArray[i] = ssaoKernel[i / 3].z;
+			}
 		}
 
 		glGenTextures(1, &noiseTexture);
