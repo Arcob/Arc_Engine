@@ -1,5 +1,6 @@
 #include "ArcTools.h"
 #include <random>
+#include "ArcTextureLoader.h"
 
 namespace Arc_Engine {
 	std::string ArcTools::_currentPath = "";
@@ -7,6 +8,10 @@ namespace Arc_Engine {
 	GLuint ArcTools::quadVBO = 0;
 	GLuint ArcTools::debugDepthShaderProgram = -1;
 	GLuint ArcTools::PostEffectProgram = -1;
+	GLuint ArcTools::ssaoProgram = -1;
+	GLuint ArcTools::ssaoTexture = 0;
+	GLuint ArcTools::_ssaoFBO = 0;
+
 	
 	GLuint ArcTools::noiseTexture = 0;
 	GLuint ArcTools::g_buffer = 0;
@@ -16,8 +21,11 @@ namespace Arc_Engine {
 	std::string ArcTools::debug_depth_vert_shader_path = "\\shadowShader\\shadow_vert.vert";
 	std::string ArcTools::debug_depth_frag_shader_path = "\\shadowShader\\shadow_frag.frag";
 
-	const std::string quad_vert_shader_path = "\\QuadShader\\quad_vert.vert";
-	const std::string quad_frag_shader_path = "\\QuadShader\\quad_frag.frag";
+	const std::string quad_vert_shader_path = "\\QuadShader\\screen_quad_vert.vert";
+	const std::string quad_frag_shader_path = "\\QuadShader\\screen_quad_frag.frag";
+	std::string ArcTools::ssao_vert_shader_path = "\\QuadShader\\ssao_vert.vert";
+	std::string ArcTools::ssao_frag_shader_path = "\\QuadShader\\ssao_frag.frag";
+
 
 	std::string ArcTools::getCurrentPath() {
 		if (_currentPath.compare("") == 0) {
@@ -28,6 +36,10 @@ namespace Arc_Engine {
 			_currentPath = path1.substr(0, found);
 		}
 		return _currentPath;
+	}
+
+	GLuint ArcTools::ssaoFBO() {
+		return _ssaoFBO;
 	}
 
 	void ArcTools::drawDebugQuad(GLuint texture) {
@@ -45,8 +57,82 @@ namespace Arc_Engine {
 		RenderQuad();
 		glUseProgram(0);
 	}
-	
+
+	void ArcTools::generateSSAOTexture(GLuint gbuffer, GLuint positionMap, const glm::mat4 proj) {
+		if (ssaoProgram == -1) {
+			ssaoProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(getCurrentPath() + shader_path + ssao_vert_shader_path, getCurrentPath() + shader_path + ssao_frag_shader_path);
+		}
+		if (_ssaoFBO <= 0 && ssaoTexture <= 0) {
+			Arc_Engine::ArcTextureLoader::createDefaultRGBA16FMap(&ssaoTexture);
+			glGenFramebuffers(1, &_ssaoFBO);
+			glBindFramebuffer(GL_FRAMEBUFFER, _ssaoFBO);
+
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, ssaoTexture, 0);
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		}
+		//std::cout << _ssaoFBO << " " << ssaoTexture << std::endl;
+		glViewport(0, 0, WIDTH * ANTI_AILASING_MULTY_TIME, HEIGHT * ANTI_AILASING_MULTY_TIME);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glUseProgram(ssaoProgram);
+		glUniform1f(glGetUniformLocation(ssaoProgram, "near_plane"), 1.0f);
+		glUniform1f(glGetUniformLocation(ssaoProgram, "far_plane"), 7.5f);
+
+		GLint texLocation1 = glGetUniformLocation(ssaoProgram, "gbufferTexture");
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, gbuffer);
+		glUniform1i(texLocation1, 1);
+
+		//generateSSAONoiceTextures();
+		GLint texLocation2 = glGetUniformLocation(ssaoProgram, "texNoise");
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, noiseTexture);
+		glUniform1i(texLocation2, 2);
+
+		GLint texLocation3 = glGetUniformLocation(ssaoProgram, "positionTexture");
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_2D, positionMap);
+		glUniform1i(texLocation3, 3);
+
+		GLint array = glGetUniformLocation(ssaoProgram, "samples");
+		glUniform3fv(array, 64 * 3, sampleArray);
+		//glUniformMatrix3fv()
+
+		GLint modelMatLocation = glGetUniformLocation(ssaoProgram, "projection");
+		glUniformMatrix4fv(modelMatLocation, 1, GL_FALSE, glm::value_ptr(proj));
+
+		//std::cout << proj << std::endl;
+
+		RenderQuad();
+		glUseProgram(0);
+	}
+
 	void ArcTools::drawPostEffectQuad(GLuint texture, GLuint gbuffer, GLuint positionMap, const glm::mat4 proj) {
+		if (PostEffectProgram == -1) {
+			PostEffectProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(getCurrentPath() + shader_path + quad_vert_shader_path, getCurrentPath() + shader_path + quad_frag_shader_path);
+		}
+		glViewport(0, 0, WIDTH * ANTI_AILASING_MULTY_TIME, HEIGHT * ANTI_AILASING_MULTY_TIME);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glUseProgram(PostEffectProgram);
+		glUniform1f(glGetUniformLocation(PostEffectProgram, "near_plane"), 1.0f);
+		glUniform1f(glGetUniformLocation(PostEffectProgram, "far_plane"), 7.5f);
+
+		GLint texLocation = glGetUniformLocation(PostEffectProgram, "screenTexture");
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glUniform1i(texLocation, 0);
+
+		GLint texLocation1 = glGetUniformLocation(PostEffectProgram, "SSAOMap");
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, ssaoTexture);
+		glUniform1i(texLocation1, 1);
+
+		RenderQuad();
+		glUseProgram(0);
+	}
+	
+	/*void ArcTools::drawPostEffectQuad(GLuint texture, GLuint gbuffer, GLuint positionMap, const glm::mat4 proj) {
 		if (PostEffectProgram == -1) {
 			PostEffectProgram = Arc_Engine::ArcMaterial::loadShaderAndCreateProgram(getCurrentPath() + shader_path + quad_vert_shader_path, getCurrentPath() + shader_path + quad_frag_shader_path);
 		}
@@ -89,7 +175,7 @@ namespace Arc_Engine {
 
 		RenderQuad();
 		glUseProgram(0);
-	}
+	}*/
 
 	void ArcTools::RenderQuad()
 	{

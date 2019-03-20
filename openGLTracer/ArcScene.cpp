@@ -36,7 +36,7 @@ namespace Arc_Engine {
 	}
 
 	void ArcScene::enableGBuffer() {
-		Arc_Engine::ArcTextureLoader::createGBufferMap(&_gBufferMap);
+		Arc_Engine::ArcTextureLoader::createDefaultRGBA16FMap(&_gBufferMap);
 		createGBuffer(&_gBufferMapFBO, _gBufferMap);
 	}
 
@@ -97,10 +97,10 @@ namespace Arc_Engine {
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
 
 		//gbuffer
-		Arc_Engine::ArcTextureLoader::createGBufferMap(&_gBufferMap);
+		Arc_Engine::ArcTextureLoader::createDefaultRGBA16FMap(&_gBufferMap);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, _gBufferMap, 0);
 
-		Arc_Engine::ArcTextureLoader::createGBufferMap(&_positionMap);
+		Arc_Engine::ArcTextureLoader::createDefaultRGBA16FMap(&_positionMap);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, _positionMap, 0);
 
 		GLenum drawBuffers[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };

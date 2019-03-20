@@ -15,9 +15,9 @@ namespace Arc_Engine {
 
 		static void createPostEffectMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
 
-		static void createGBufferMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
+		static void createDefaultRGBA16FMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
 
-		static void createGBufferMap(GLuint* tempTexture);
+		static void createDefaultRGBA16FMap(GLuint* tempTexture);
 	};
 	
 }
