@@ -260,8 +260,11 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	//bind the shaders
 	glUseProgram(program);
 
-	GLint cameraMatLocation = glGetUniformLocation(program, "camera");
-	glUniformMatrix4fv(cameraMatLocation, 1, GL_FALSE, glm::value_ptr(app->mainCamera()->matrix()));
+	GLint projectionMatLocation = glGetUniformLocation(program, "projection");
+	glUniformMatrix4fv(projectionMatLocation, 1, GL_FALSE, glm::value_ptr(app->mainCamera()->projection()));
+
+	GLint viewMatLocation = glGetUniformLocation(program, "view");
+	glUniformMatrix4fv(viewMatLocation, 1, GL_FALSE, glm::value_ptr(app->mainCamera()->view()));
 
 	GLint modelMatLocation = glGetUniformLocation(program, "model");
 	glUniformMatrix4fv(modelMatLocation, 1, GL_FALSE, glm::value_ptr(inst->transform().transformMatrix()));

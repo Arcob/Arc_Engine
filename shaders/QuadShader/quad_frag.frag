@@ -3,10 +3,10 @@ out vec4 FragColor;
 
 in vec2 TexCoords;
 
-uniform sampler2D screenTexture;
-uniform sampler2D gbufferTexture;
+uniform sampler2D screenTexture; 
+uniform sampler2D gbufferTexture; //法线在切线空间下
 uniform sampler2D texNoise;
-uniform sampler2D positionTexture;
+uniform sampler2D positionTexture;  //位置在世界空间下,深度在摄像机空间下
 
 uniform vec3 samples[64];
  
@@ -15,12 +15,12 @@ int kernelSize = 64;
 float radius = 1.0;
  
 // tile noise texture over screen based on screen dimensions divided by noise size
-const vec2 noiseScale = vec2(800.0f/4.0f, 600.0f/4.0f); 
+const vec2 noiseScale = vec2(1024.0f/4.0f, 1024.0f/4.0f); 
  
 uniform mat4 projection;
 
 void main()
-{ 
+{
     
     // Get input for SSAO algorithm
     vec3 fragPos = texture(positionTexture, TexCoords).xyz;
@@ -48,13 +48,14 @@ void main()
         float sampleDepth = -texture(positionTexture, offset.xy).w; // Get depth value of kernel sample
         
         // range check & accumulate
-        //float rangeCheck = smoothstep(0.0, 1.0, radius / abs(fragPos.z - sampleDepth ));
-        //occlusion += (sampleDepth >= sample.z ? 1.0 : 0.0) * rangeCheck;     
-        occlusion += (sampleDepth >= sample.z ? 1.0 : 0.0);      
+        float rangeCheck = smoothstep(0.0, 1.0, radius / abs(fragPos.z - sampleDepth ));
+        occlusion += (sampleDepth >= sample.z ? 1.0 : 0.0) * rangeCheck;     
+        //occlusion += (sampleDepth >= sample.z ? 1.0 : 0.0);      
     }
     occlusion = (occlusion / kernelSize);
     
     //FragColor = vec4(vec3(occlusion),1) ;
+    //FragColor = texture(positionTexture, TexCoords);
     //FragColor = vec4(vec3(texture(positionTexture, TexCoords).w),1) ;
     FragColor = texture(screenTexture, TexCoords) - vec4(vec3(occlusion),1);
 }

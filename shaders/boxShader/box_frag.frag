@@ -11,6 +11,8 @@ in vec2 TexCoord;
 in vec3 FragNormal;
 in vec4 FragPosLightSpace;
 
+in vec3 gFragPos;
+in vec3 gNormal;
 
 layout(location = 0) out vec4 finalColor;
 layout(location = 1) out vec4 GBufferMap;
@@ -24,8 +26,8 @@ struct LightAttr
 	vec3 diffuse;
 };
 
-const float NEAR = 0.03; // 投影矩阵的近平面
-const float FAR = 20; // 投影矩阵的远平面
+const float NEAR = 0.3; // 投影矩阵的近平面
+const float FAR = 100; // 投影矩阵的远平面
 
 //const float NEAR = 0.3; // 投影矩阵的近平面
 //const float FAR = 100; // 投影矩阵的远平面
@@ -80,8 +82,9 @@ void main() {
 	vec3	normal = normalize(FragNormal);
 	float	diffFactor = max(dot(lightDir, normal), 0.0);
 	vec3	diffuse = diffFactor * light.diffuse;
-    GBufferMap = vec4(normal,1);
-    positionMap = vec4(FragPos,  LinearizeDepth(gl_FragCoord.z));
+    GBufferMap = vec4(gNormal,1);
+    positionMap = vec4(gFragPos,  LinearizeDepth(gl_FragCoord.z));
+    //positionMap = vec4(gFragPos,  gl_FragCoord.z);
 	vec4 albedo = texture(U_MainTexture, TexCoord);
 
 	vec3	result = ambient + ((1.0 - shadow) * diffuse);
