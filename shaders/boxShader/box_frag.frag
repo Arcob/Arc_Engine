@@ -82,7 +82,8 @@ void main() {
 	vec3	normal = normalize(FragNormal);
 	float	diffFactor = max(dot(lightDir, normal), 0.0);
 	vec3	diffuse = diffFactor * light.diffuse;
-    GBufferMap = vec4(gNormal,1);
+    GBufferMap = vec4(normalize(gNormal),1);
+    //GBufferMap = vec4(gNormal,1);
     positionMap = vec4(gFragPos,  LinearizeDepth(gl_FragCoord.z));
     //positionMap = vec4(gFragPos,  gl_FragCoord.z);
 	vec4 albedo = texture(U_MainTexture, TexCoord);
