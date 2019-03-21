@@ -11,10 +11,6 @@ namespace Arc_Engine {
 
 		static void createDepthMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
 
-		static void createPostEffectMap(GLuint* tempTexture); //默认的width和height都是1024
-
-		static void createPostEffectMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
-
 		static void createDefaultRGBA16FMap(GLuint shadowWidth, GLuint shadowHeight, GLuint* tempTexture);
 
 		static void createDefaultRGBA16FMap(GLuint* tempTexture);

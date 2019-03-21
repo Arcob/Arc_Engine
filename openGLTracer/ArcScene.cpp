@@ -58,7 +58,8 @@ namespace Arc_Engine {
 	}
 
 	void ArcScene::enablePostEffect() {
-		Arc_Engine::ArcTextureLoader::createPostEffectMap(&_postEffectMap);
+		//Arc_Engine::ArcTextureLoader::createPostEffectMap(&_postEffectMap);
+		Arc_Engine::ArcTextureLoader::createDefaultRGBA16FMap(&_postEffectMap);
 		createPostEffectBuffer(&_postEffectMapFBO, _postEffectMap);
 	}
 

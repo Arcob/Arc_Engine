@@ -3,6 +3,7 @@
 uniform sampler2D U_MainTexture;
 uniform sampler2D ShadowMap;
 
+uniform bool EnableShadow;
 //uniform sampler2D GBufferMap;
 
 
@@ -60,7 +61,7 @@ float ShadowCalculation(vec4 fragPosLightSpace, float bias)
     shadow /= 9.0;
 
     if (projCoords.z > 1.0)
-    shadow = 0.0;
+        shadow = 0.0;
 
     return shadow;
 }
@@ -75,7 +76,7 @@ void main() {
 	vec3	ambient = light.ambient;
     float bias = max(0.0005 * (1.0 - dot(FragNormal, light.direction)), 0.00005);
     //float bias = 0;
-	float shadow = ShadowCalculation(FragPosLightSpace, bias);  
+	
 
 	// 漫反射光成分 此时需要光线方向为指向光源
     vec3	lightDir = normalize(-light.direction);	// 翻转方向光源的方向
@@ -88,7 +89,14 @@ void main() {
     //positionMap = vec4(gFragPos,  gl_FragCoord.z);
 	vec4 albedo = texture(U_MainTexture, TexCoord);
 
-	vec3	result = ambient + ((1.0 - shadow) * diffuse);
+    vec3 result = ambient;
+    if (EnableShadow){
+        float shadow = ShadowCalculation(FragPosLightSpace, bias);  
+	    result += (1.0 - shadow) * diffuse;
+    }else{
+        result += diffuse;
+    }
+    
 	finalColor	= vec4(result ,1) * albedo; //gl_FragCoord.z是片元的深度信息，将深度信息写入到颜色的alpha通道里
     //finalColor	= vec4(vec3(gl_FragCoord.z),1.0f);
 

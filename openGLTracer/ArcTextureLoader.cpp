@@ -82,21 +82,6 @@ namespace Arc_Engine {
 		createDepthMap(WIDTH, HEIGHT, depthMap);
 	}
 	
-	void ArcTextureLoader::createPostEffectMap(GLuint postEffectWidth, GLuint postEffectHeight, GLuint* postEffectMap) {
-		glGenTextures(1, postEffectMap);
-		glBindTexture(GL_TEXTURE_2D, *postEffectMap);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, postEffectWidth, postEffectHeight, 0, GL_RGBA, GL_FLOAT, NULL);
-		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, postEffectWidth, postEffectHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glBindTexture(GL_TEXTURE_2D, 0);
-
-	}
-
-	void ArcTextureLoader::createPostEffectMap(GLuint* postEffectMap) {
-		createPostEffectMap(WIDTH * ANTI_AILASING_MULTY_TIME, HEIGHT * ANTI_AILASING_MULTY_TIME, postEffectMap);
-	}
-	
 	void ArcTextureLoader::createDefaultRGBA16FMap(GLuint width, GLuint height, GLuint* tempTexture) {
 		glGenTextures(1, tempTexture);
 		glBindTexture(GL_TEXTURE_2D, *tempTexture);

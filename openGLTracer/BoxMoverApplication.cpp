@@ -260,6 +260,9 @@ void RenderInstance(GLuint program, std::shared_ptr<Arc_Engine::ArcGameObject> i
 	//bind the shaders
 	glUseProgram(program);
 
+	//GLint enableShadowLoaction = glGetUniformLocation(program, "EnableShadow");
+	glUniform1i(glGetUniformLocation(program, "EnableShadow"), ENABLE_SHADOW);
+
 	GLint projectionMatLocation = glGetUniformLocation(program, "projection");
 	glUniformMatrix4fv(projectionMatLocation, 1, GL_FALSE, glm::value_ptr(app->mainCamera()->projection()));
 
