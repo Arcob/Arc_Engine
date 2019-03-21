@@ -13,6 +13,16 @@ If anyone see this little engine and like it, I beg you to give me a star. As I 
 
 I use this little engine to implement a sokoban game (box mover), the gif is shown below.
 
+2019/3/21 update, add Screen-Space Ambient Occlusion (SSAO) and Fast Approximate Anti-Aliasing (FXAA), the new gif is shown below.
+
+You can see the render quality of the sokoban game has been improved comparing to the old one;
+
+Heres the new one (with SSAO and FXAA):
+
+![image](https://github.com/Arcob/openGLTracer/blob/master/resources/boxMoverWithSSAOandFXAA.gif)
+
+Old one here:
+
 ![image](https://github.com/Arcob/openGLTracer/blob/master/resources/boxMoverWithShadow.gif)
 
 This little is still not fully completed, I will gradually improve it.
