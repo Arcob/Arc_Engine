@@ -17,6 +17,7 @@
 #include "ArcTextureLoader.h"
 #include "DriverSetting.h"
 #include "ArcMaterial.h"
+#include "ArcPostEffectManager.h"
 
 #define print Arc_Engine::ArcLogger::log 
 

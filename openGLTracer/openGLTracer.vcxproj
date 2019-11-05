@@ -155,6 +155,7 @@
     <ClInclude Include="ArcGameObject.h" />
     <ClInclude Include="ArcInput.h" />
     <ClInclude Include="ArcLogger.h" />
+    <ClInclude Include="ArcPostEffectManager.h" />
     <ClInclude Include="ArcRenderer.h" />
     <ClInclude Include="ArcScene.h" />
     <ClInclude Include="ArcMaterial.h" />
@@ -172,7 +173,6 @@
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PushableBox.h" />
-    <ClInclude Include="SSAOToolKit.h" />
     <ClInclude Include="Swb_Model.h" />
     <ClInclude Include="ArcEngineDriver.h" />
     <ClInclude Include="Swb_MeshLoader.h" />
@@ -185,6 +185,7 @@
     <ClCompile Include="ArcGameObject.cpp" />
     <ClCompile Include="ArcInput.cpp" />
     <ClCompile Include="ArcLogger.cpp" />
+    <ClCompile Include="ArcPostEffectManager.cpp" />
     <ClCompile Include="ArcRenderer.cpp" />
     <ClCompile Include="ArcScene.cpp" />
     <ClCompile Include="ArcMaterial.cpp" />
@@ -200,7 +201,6 @@
     <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PushableBox.cpp" />
-    <ClCompile Include="SSAOToolKit.cpp" />
     <ClCompile Include="Swb_Model.cpp" />
     <ClCompile Include="ArcEngineDriver.cpp" />
     <ClCompile Include="Swb_MeshLoader.cpp" />
